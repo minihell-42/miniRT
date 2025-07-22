@@ -9,6 +9,8 @@ LIBS = -lXext -lX11 -lm -L $(MLX_DIR) -lmlx
 MLX_NAME = libmlx.a
 MLX = $(MLX_DIR)$(MLX_NAME)
 
+SRC_DIR = srcs/
+OBJ_DIR = obj/
 LIBFT_DIR = libft/
 LIBFT_NAME = libft.a
 LIBFT = $(LIBFT_DIR)$(LIBFT_NAME)
@@ -17,10 +19,8 @@ INC = -I ./includes/ \
       -I ./libft/ \
       -I $(MLX_DIR)
 
-SRC_DIR = srcs/
 SRC = $(SRC_DIR)/main.c \
 
-OBJ_DIR = obj/
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 all: $(MLX) $(LIBFT) $(NAME)

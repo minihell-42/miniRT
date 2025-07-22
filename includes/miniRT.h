@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:05:11 by samcasti          #+#    #+#             */
+/*   Updated: 2025/07/22 16:17:02 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -13,5 +25,65 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "../minilibx/mlx.h"
+
+# define HEIGHT 700
+# define WIDTH 700
+
+// Vector struct
+typedef struct s_vector
+{
+	float	x;
+	float	y;
+	float	z;
+}		t_vector;
+
+// Color struct
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}		t_color;
+
+// Ambient struct
+typedef struct s_ambient
+{
+	float	ratio;
+	t_color	color;
+}		t_ambient;
+
+// Camera struct
+typedef struct s_camera
+{
+	t_vector	coordinates;
+	t_vector	normalized;
+	float		fov;
+}		t_camera;
+
+// Light struct
+typedef struct s_light
+{
+	float		ratio;
+	t_vector	coordinates;
+
+}		t_light;
+
+// MLX Image struct
+typedef struct s_image
+{
+	void	*img_ptr;
+	char	*buffer;
+	int		bpp;
+	int		length;
+	int		endian;
+}		t_image;
+
+// MLX struct
+typedef struct s_app
+{
+	void	*mlx_connection;
+	void	*mlw_window;
+	t_image	image;
+}		t_app;
 
 #endif
