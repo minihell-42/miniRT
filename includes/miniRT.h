@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:11 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/22 16:17:02 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/25 13:52:34 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,20 @@ typedef struct s_app
 
 typedef struct s_data
 {
-	t_app *app;
-	t_ambient *ambient;
-	t_camera *camera;
-	t_light *light;
+	t_app		*app;
+	t_ambient	*ambient;
+	t_camera	*camera;
+	t_light		*light;
 }			t_data;
 
 // ERRORS
-void error_exit(char *msg);
+void	error_exit(char *msg);
+void	system_error(char *msg);
 
 // DATA INIT
-void data_init(t_data *data);
+void	data_init(t_data *data);
 
+// Read
+char	*read_file(char *file);
 
 #endif

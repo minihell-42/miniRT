@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:05:21 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/25 14:04:43 by samcasti         ###   ########.fr       */
+/*   Created: 2025/07/25 14:00:25 by samcasti          #+#    #+#             */
+/*   Updated: 2025/07/25 14:10:36 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	correct_extension(char *str)
+char	*read_file(char *file)
 {
-	int	len;
+	int		fd;
+	char	*line;
 
-	len = ft_strlen(str) - 3;
-	if (!ft_strncmp(str + len, ".rt", 3))
-		return (1);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_data	*data;
-
-	if (argc != 2)
-		error_exit("Invalid number of arguments");
-	if (!correct_extension(argv[1]))
-		error_exit("Invalid file extension");
-	data = malloc(sizeof(t_data));
-	if (!data)
-		system_error("Allocation failure");
-	read_file(argv[1]);
-    free(data);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		system_error("Cannot open file");
+	while ((line = get_next_line(fd)) != NULL)
+	{
+        if (line[0] == 'A')
+            parse_ambient(line);
+        else if(line[0] == 'L')
+            parse_light(line);
+        else if(line[0] == 'C')
+            parse_camera(line);
+		// ft_printf("%c\n", line[0]);
+		free(line);
+	}
+	close(fd);
 	return (0);
 }
