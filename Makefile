@@ -17,7 +17,7 @@ LIBFT_DIR = libft/
 LIBFT_NAME = libft.a
 LIBFT = $(LIBFT_DIR)$(LIBFT_NAME)
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/errors.c $(SRC_DIR)/init.c \
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/errors.c $(SRC_DIR)/init.c $(SRC_DIR)/parser/read.c
 
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
