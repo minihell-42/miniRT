@@ -1,38 +1,8 @@
-#include "minirt.h"
+#include "miniRT.h"
 #include <math.h>
 
 #ifndef RENDER_H
 # define RENDER_H
-
-# ifndef M_PI
-#   define M_PI 3.14159265358979323846264338327950288f
-# endif
-
-// In order to prevent bouncing rays self-intersecting
-#define RAY_T_MIN 0.0001f
-
-// 'Infinite' distance, used as a default value
-#define RAY_T_MAX 1.0e30f
-
-typedef struct s_vector
-{
-  float x;
-  float y;
-  float z;
-}              t_vector;
-
-typedef struct s_vector2d
-{
-  float u;
-  float v;
-}              t_vector2d;
-
-typedef struct s_color
-{
-  int r;
-  int g;
-  int b;
-}              t_color;
 
 typedef enum  s_type
 {
@@ -43,10 +13,31 @@ typedef enum  s_type
 
 typedef struct s_shape
 {
-  t_type  shape_type;
-  void    *object;
+  t_type    shape_type;
+  void      *object;
+  t_color   color;
 
 }              t_shape;
+
+typedef struct s_sphere
+{
+  t_vector  center;
+  float     radious;
+}              t_sphere;
+
+typedef struct s_plane
+{
+  t_vector  point;
+  t_vector  normal;
+}              t_plane;
+
+typedef struct s_cylinder
+{
+  t_vector  center;
+  t_vector  normal;
+  float     radious;
+  float     height;
+}              t_cylinder;
 
 typedef struct s_ray
 {
@@ -91,5 +82,14 @@ t_inter   inter_init(const t_ray *r);
 t_vector  inter_pos(const t_inter *i);
 int       inter_hit(const t_inter *i);
 
+//  SHAPES
+int       shape_intersect(t_inter *hit, const t_shape *shape);
+int       sphere_intersection(t_inter *hit, const t_sphere *sp);
+int       plane_intersection(t_inter *hit, const t_plane *pl);
+int       cylinder_intersection(t_inter *hit, const t_cylinder *cy);
+t_vector  shape_normal(const t_shape *shape, t_vector hit_point);
+t_vector  sphere_normal(const t_sphere *sp, t_vector hit_point);
+t_vector  plane_normal(const t_plane *pl, t_vector hit_point);
+t_vector  cylinder_normal(const t_cylinder *cy, t_vector hit_point);
 #endif
 
