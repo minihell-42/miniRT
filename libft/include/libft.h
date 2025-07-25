@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:15:31 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/22 14:56:35 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/22 16:11:18 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ char				*ft_strndup(const char *s, size_t n);
 
 int					ft_printf(const char *format, ...);
 char				*get_next_line(int fd);
-
 
 #endif
