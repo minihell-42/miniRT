@@ -86,4 +86,19 @@ typedef struct s_app
 	t_image	image;
 }		t_app;
 
+typedef struct s_data
+{
+	t_app *app;
+	t_ambient *ambient;
+	t_camera *camera;
+	t_light *light;
+}			t_data;
+
+// ERRORS
+void error_exit(char *msg);
+
+// DATA INIT
+void data_init(t_data *data);
+
+
 #endif

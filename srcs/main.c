@@ -24,16 +24,17 @@ int correct_extension(char *str)
 
 int	main(int argc, char **argv)
 {
-    if (argc == 2)
-    {
-        if (!correct_extension(argv[1]))
-        {
-            ft_putendl_fd("Error: Invalid extension of file", 2);
-            return (1);
-        }
-        // INIT DATA AND PARSE
-        return (0);
-    }
-    ft_putendl_fd("Error: Incorrect number or arguments", 2);
-	return (1);
+    t_data *data;
+
+    if (argc != 2)
+        error_exit("Invalid number of arguments");
+    if (!correct_extension(argv[1]))
+        error_exit("Invalid extension of file");
+    data = malloc(sizeof(t_data));
+    if (!data)
+        error_exit("Allocation failure");
+    // INIT DATA AND PARSE
+    data_init(data);
+    parse(data);
+    return (0);
 }
