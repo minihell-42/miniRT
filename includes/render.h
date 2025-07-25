@@ -22,7 +22,7 @@ typedef struct s_shape
 typedef struct s_sphere
 {
   t_vector  center;
-  float     radious;
+  float     radius;
 }              t_sphere;
 
 typedef struct s_plane
@@ -35,9 +35,20 @@ typedef struct s_cylinder
 {
   t_vector  center;
   t_vector  normal;
-  float     radious;
+  float     radius;
   float     height;
 }              t_cylinder;
+
+typedef struct s_quadratic
+{
+  float a;
+  float b;
+  float c;
+  float t0;
+  float t1;
+  float square;
+  int   sol_count;
+}              t_quadratic;
 
 typedef struct s_ray
 {
@@ -87,9 +98,12 @@ int       shape_intersect(t_inter *hit, const t_shape *shape);
 int       sphere_intersection(t_inter *hit, const t_sphere *sp);
 int       plane_intersection(t_inter *hit, const t_plane *pl);
 int       cylinder_intersection(t_inter *hit, const t_cylinder *cy);
+int       solve_quad(t_quadratic *q);
+float     pick_quad_root(const t_quadratic *q, float t_min, float t_max);
 t_vector  shape_normal(const t_shape *shape, t_vector hit_point);
 t_vector  sphere_normal(const t_sphere *sp, t_vector hit_point);
 t_vector  plane_normal(const t_plane *pl, t_vector hit_point);
 t_vector  cylinder_normal(const t_cylinder *cy, t_vector hit_point);
+
 #endif
 
