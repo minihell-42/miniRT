@@ -30,10 +30,13 @@
 #  define M_PI 3.14159265358979323846264338327950288f
 # endif
 
-# define RAY_DIST_MIN 0.0001f
-	// In order to prevent bouncing rays self-intersecting
-# define RAY_DIST_MAX 1.0e30f // 'Infinite' distance, used as a default value
-# define EPSILON 1e-6f
+// In order to prevent bouncing rays self-intersecting
+# define RAY_DIST_MIN 1e-6f
+
+// 'Infinite' distance, used as a default value
+# define RAY_DIST_MAX 1.0e30f
+
+// Default screen size
 # define HEIGHT 700
 # define WIDTH 700
 

@@ -62,12 +62,13 @@ t_vector	vec_div(t_vector v1, t_vector v2)
 	return (new);
 }
 
-// TODO: Needs an exit when scalar == 0.0f - current implementation is temporary
+// TODO: Needs an exit when scalar < RAY_DIST_MIN (close to zero)
+// current implementation is temporary
 t_vector	vec_scalar_div(t_vector v, float scalar)
 {
 	t_vector	new;
 
-	if (scalar == 0.0f)
+	if (scalar < RAY_DIST_MIN)
 		return ((t_vector){0.0f, 0.0f, 0.0f});
 	new.x = v.x / scalar;
 	new.y = v.y / scalar;

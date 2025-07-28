@@ -24,7 +24,7 @@ static float	cap_intersect(const t_ray *ray, const t_cylinder *cy,
 	float		dist;
 
 	denom = vec_dot(ray->direction, cy->normal);
-	if (fabsf(denom) < EPSILON)
+	if (fabsf(denom) < RAY_DIST_MIN)
 		return (-1.0f);
 	dist = vec_dot(vec_sub(cap_center, ray->origin), cy->normal) / denom;
 	if (dist <= RAY_DIST_MIN)
