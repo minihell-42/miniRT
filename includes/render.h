@@ -72,8 +72,6 @@ t_vector  vec_cross(t_vector v1, t_vector v2);
 t_vector  vec_normalize(t_vector v);
 t_vector  vec_negate(t_vector v);
 t_vector  vec_reflect(t_vector v, t_vector n);
-t_vector  vec_clamp(t_vector v, float min, float max);
-
 
 // VECTOR MATH
 t_vector  vec_add(t_vector v1, t_vector v2);
@@ -105,5 +103,11 @@ t_vector  sphere_normal(const t_sphere *sp, t_vector hit_point);
 t_vector  plane_normal(const t_plane *pl, t_vector hit_point);
 t_vector  cylinder_normal(const t_cylinder *cy, t_vector hit_point);
 
+// COLOR
+t_color   color_add(t_color c1, t_color c2);
+t_color   color_mult(t_color c1, t_color c2);
+t_color   color_scalar_mult(t_color c, float scalar);
+t_color   apply_gamma_correction(t_color c, float exposure, float gamma);
+t_vector  vec_clamp(t_vector v, float min, float max);
 #endif
 

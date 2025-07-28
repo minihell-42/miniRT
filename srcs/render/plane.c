@@ -7,7 +7,7 @@ int plane_intersection(t_inter *hit, const t_plane *pl)
   t_vector  diff;
 
   denom = vec_dot(hit->ray.direction, pl->normal);
-  if (fabsf(denom) < EPS)
+  if (fabsf(denom) < EPSILON)
     return (0);
   diff = vec_sub(pl->point, hit->ray.origin);
   t_val = vec_dot(diff, pl->normal) / denom;
