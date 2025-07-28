@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersection.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/28 11:43:46 by dgomez-a          #+#    #+#             */
+/*   Updated: 2025/07/28 11:43:48 by dgomez-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "render.h"
 
-t_inter   inter_init(const t_ray *r)
+t_inter	inter_init(const t_ray *ray)
 {
-  t_inter i;
+	t_inter	inter;
 
-  i.ray = *r;
-  i.t = r->t_max;
-  i.shape = NULL;
-  return (i);
+	inter.ray = *ray;
+	inter.t = ray->t_max;
+	inter.shape = NULL;
+	return (inter);
 }
 
-t_vector  inter_pos(const t_inter *i)
+t_vector	inter_pos(const t_inter *inter)
 {
-  return (ray_at(&i->ray, i->t));
+	return (ray_at(&inter->ray, inter->dist));
 }
 
-int inter_hit(const t_inter *i)
+int	inter_hit(const t_inter *inter)
 {
-  return (i->shape != NULL);
+	return (inter->shape != NULL);
 }

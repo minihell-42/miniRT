@@ -1,22 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/28 11:44:00 by dgomez-a          #+#    #+#             */
+/*   Updated: 2025/07/28 11:44:02 by dgomez-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "render.h"
 
-t_ray ray_init(t_vector origin, t_vector direction, float t_max)
+t_ray	ray_init(t_vector origin, t_vector direction, float dist_max)
 {
-  t_ray r;
+	t_ray	ray;
 
-  r.origin = origin;
-  r.direction = vec_normalize(direction);
-  r.t_max = t_max;
-  return (r);
+	ray.origin = origin;
+	ray.direction = vec_normalize(direction);
+	ray.dist_max = dist_max;
+	return (ray);
 }
 
-t_ray     ray_init_default(t_vector origin, t_vector direction)
+t_ray	ray_init_default(t_vector origin, t_vector direction)
 {
-  return (ray_init(origin, direction, RAY_T_MAX));
+	return (ray_init(origin, direction, RAY_DIST_MAX));
 }
 
-t_vector  ray_at(const t_ray *r, float t)
+t_vector	ray_at(const t_ray *ray, float dist)
 {
-  return (vec_add(r->origin, vec_scalar_mult(r->direction, t)));
+	return (vec_add(ray->origin, vec_scalar_mult(ray->direction, dist)));
 }
-
