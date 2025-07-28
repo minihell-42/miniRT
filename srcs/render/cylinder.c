@@ -74,7 +74,7 @@ int	cylinder_intersection(t_inter *hit, const t_cylinder *cy)
 	float		dist_bott;
 	float		dist_side;
 
-	dist_side = cylinder_side_intersect(&hit->ray, cy, hit->dist);
+	dist_side = cylinder_side_intersection(&hit->ray, cy, hit->dist);
 	if (dist_side > 0.0f)
 		hit->dist = dist_side;
 	dist_bott = cap_intersect(&hit->ray, cy, cy->center);

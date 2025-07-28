@@ -21,7 +21,7 @@ SRC = $(SRC_DIR)/main.c $(SRC_DIR)/errors.c $(SRC_DIR)/init.c \
 			$(SRC_DIR)/render/vec_math.c $(SRC_DIR)/render/vec_utils.c \
 			$(SRC_DIR)/render/ray.c $(SRC_DIR)/render/intersection.c \
 			$(SRC_DIR)/render/shapes.c $(SRC_DIR)/render/plane.c \
-			$(SRC_DIR)/render/spehere.c $(SRC_DIR)/render/cylinder.c \
+			$(SRC_DIR)/render/sphere.c $(SRC_DIR)/render/cylinder.c \
 
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 

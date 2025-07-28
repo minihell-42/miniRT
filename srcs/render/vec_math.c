@@ -62,11 +62,14 @@ t_vector	vec_div(t_vector v1, t_vector v2)
 	return (new);
 }
 
+// TODO: Needs an exit when scalar == 0.0f - current implementation is temporary
 t_vector	vec_scalar_div(t_vector v, float scalar)
 {
 	t_vector	new;
 
-	new.x = v.x / scalar;
+	if (scalar == 0.0f)
+		return ((t_vector){0.0f, 0.0f, 0.0f})
+		new.x = v.x / scalar;
 	new.y = v.y / scalar;
 	new.z = v.z / scalar;
 	return (new);
