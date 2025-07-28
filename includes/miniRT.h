@@ -117,6 +117,6 @@ void	data_init(t_data *data);
 char	*read_file(char *file);
 
 // FREEE
-void free_data(t_data *data);
+void	free_data(t_data *data);
 
 #endif
