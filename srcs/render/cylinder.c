@@ -52,6 +52,8 @@ static float	cylinder_side_intersection(const t_ray *ray,
 	dp = vec_sub(ray->direction, vec_scalar_mult(cy->normal,
 				vec_dot(ray->direction, cy->normal)));
 	quad.a = vec_dot(dp, dp);
+	if (fabsf(quad.a) < RAY_DIST_MIN)
+		return (-1.0f);
 	quad.b = 2.0f * vec_dot(dp, vec_sub(oc, vec_scalar_mult(cy->normal,
 					vec_dot(oc, cy->normal))));
 	quad.c = vec_dot(oc, oc) - (cy->radius * cy->radius);
