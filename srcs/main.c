@@ -24,16 +24,10 @@ int	correct_extension(char *str)
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
-
 	if (argc != 2)
 		error_exit("Invalid number of arguments");
 	if (!correct_extension(argv[1]))
 		error_exit("Invalid file extension");
-	data = malloc(sizeof(t_data));
-	if (!data)
-		system_error("Allocation failure");
-	read_file(argv[1]);
-    free(data);
+	init_minirt(argv[1]);
 	return (0);
 }

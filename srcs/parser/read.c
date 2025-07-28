@@ -22,6 +22,7 @@ char	*read_file(char *file)
 		system_error("Cannot open file");
 	while ((line = get_next_line(fd)) != NULL)
 	{
+		
         if (line[0] == 'A')
             parse_ambient(line);
         else if(line[0] == 'L')

@@ -18,4 +18,18 @@ void	data_init(t_data *data)
 	data->ambient = malloc(sizeof(t_ambient));
 	data->light = malloc(sizeof(t_light));
 	data->camera = malloc(sizeof(t_camera));
+	if (!data->app || !data->ambient || !data->light || !data->camera)
+		return ;
 }
+
+void	init_minirt(char *file)
+{
+	t_data	*data;
+
+	data = malloc(sizeof(t_data));
+	if (!data)
+		system_error("Allocation failure");
+	data_init(data);
+	read_file(file);
+}
+

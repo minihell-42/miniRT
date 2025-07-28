@@ -83,7 +83,7 @@ typedef struct s_app
 {
 	void	*mlx_connection;
 	void	*mlw_window;
-	t_image	image;
+	t_image	*image;
 }		t_app;
 
 typedef struct s_data
@@ -98,10 +98,14 @@ typedef struct s_data
 void	error_exit(char *msg);
 void	system_error(char *msg);
 
-// DATA INIT
+// INIT
+void	init_minirt(char *file);
 void	data_init(t_data *data);
 
 // Read
 char	*read_file(char *file);
+
+// FREEE
+void free_data(t_data *data);
 
 #endif
