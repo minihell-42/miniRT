@@ -68,8 +68,8 @@ t_vector	vec_scalar_div(t_vector v, float scalar)
 	t_vector	new;
 
 	if (scalar == 0.0f)
-		return ((t_vector){0.0f, 0.0f, 0.0f})
-		new.x = v.x / scalar;
+		return ((t_vector){0.0f, 0.0f, 0.0f});
+	new.x = v.x / scalar;
 	new.y = v.y / scalar;
 	new.z = v.z / scalar;
 	return (new);

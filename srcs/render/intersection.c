@@ -17,7 +17,7 @@ t_inter	inter_init(const t_ray *ray)
 	t_inter	inter;
 
 	inter.ray = *ray;
-	inter.t = ray->dist_max;
+	inter.dist = ray->dist_max;
 	inter.shape = NULL;
 	return (inter);
 }

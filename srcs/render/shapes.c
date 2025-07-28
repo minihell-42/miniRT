@@ -40,7 +40,6 @@ t_vector	shape_normal(const t_shape *shape, t_vector hit_point)
 		return (plane_normal((t_plane *)shape->object, hit_point));
 	else
 		return (cylinder_normal((t_cylinder *)shape->object, hit_point));
-	return ((t_vector){0, 0, 0});
 }
 
 void	ft_swap(float *a, float *b)
