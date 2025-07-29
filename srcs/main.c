@@ -6,35 +6,28 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:21 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/22 17:14:27 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:17:59 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int correct_extension(char *str)
+int	correct_extension(char *str)
 {
-    int len;
+	int	len;
 
-    len = ft_strlen(str) - 3;
-    if (!ft_strncmp(str + len, ".rt", 3))
-        return (1);
-    return (0);
+	len = ft_strlen(str) - 3;
+	if (!ft_strncmp(str + len, ".rt", 3))
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-    t_data *data;
-
-    if (argc != 2)
-        error_exit("Invalid number of arguments");
-    if (!correct_extension(argv[1]))
-        error_exit("Invalid extension of file");
-    data = malloc(sizeof(t_data));
-    if (!data)
-        error_exit("Allocation failure");
-    // INIT DATA AND PARSE
-    data_init(data);
-    parse(data);
-    return (0);
+	if (argc != 2)
+		exit_message("Invalid number of arguments");
+	if (!correct_extension(argv[1]))
+		exit_message("Invalid file extension");
+	init_minirt(argv[1]);
+	return (0);
 }
