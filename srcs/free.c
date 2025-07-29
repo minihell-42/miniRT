@@ -1,6 +1,21 @@
 #include "miniRT.h"
 
-void free_app(t_data *data)
+void	free_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	if (!array)
+		return ;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+void	free_app(t_data *data)
 {
 	if (data->app->image)
 	{
@@ -16,7 +31,7 @@ void free_app(t_data *data)
 	free(data->app);
 }
 
-void free_data(t_data *data)
+void	free_data(t_data *data)
 {
 	if (!data)
 		return ;
@@ -25,6 +40,8 @@ void free_data(t_data *data)
 	free(data->light);
 	if (data->app)
 		free_app(data);
-	// TODO: free figures
+	free(data->cylinder);
+	free(data->sphere);
+	free(data->plane);
 	free(data);
 }

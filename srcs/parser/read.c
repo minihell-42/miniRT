@@ -12,24 +12,31 @@
 
 #include "miniRT.h"
 
-char	*read_file(char *file)
+char	*read_file(char *file, t_data *data)
 {
 	int		fd;
 	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		system_error("Cannot open file");
+		exit_free_data("Cannot open file", data);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		
-        if (line[0] == 'A')
-            parse_ambient(line);
-        else if(line[0] == 'L')
-            parse_light(line);
-        else if(line[0] == 'C')
-            parse_camera(line);
-		// ft_printf("%c\n", line[0]);
+		clean_line(line);
+		if (line[0] == 'A')
+			parse_ambient(line, data);
+		else if (line[0] == 'L')
+			parse_light(line, data);
+		else if (line[0] == 'C')
+			parse_camera(line, data);
+		else if (line[0] == 's' && line[1] == 'p')
+			parse_sphere(line, data);
+		else if (line[0] == 'p' && line[1] == 'l')
+			parse_plane(line, data);
+		else if (line[0] == 'c' && line[1] == 'y')
+			parse_cylinder(line, data);
+		else if (line[0] != '\0' && line[0] != '\t')
+			exit_free_data("Unknown identifier in file", data);
 		free(line);
 	}
 	close(fd);

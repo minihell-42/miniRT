@@ -76,7 +76,6 @@ typedef struct s_light
 {
 	float		ratio;
 	t_vector	coordinates;
-
 }				t_light;
 
 // MLX Image struct
@@ -97,26 +96,112 @@ typedef struct s_app
 	t_image	*image;
 }		t_app;
 
+typedef enum s_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER
+}				t_type;
+
+typedef struct s_shape
+{
+	t_type		shape_type;
+	void		*object;
+	t_color		color;
+
+}				t_shape;
+
+typedef struct s_sphere
+{
+	t_vector	center;
+	float		radius;
+}				t_sphere;
+
+typedef struct s_plane
+{
+	t_vector	point;
+	t_vector	normal;
+}				t_plane;
+
+typedef struct s_cylinder
+{
+	t_vector	center;
+	t_vector	normal;
+	float		radius;
+	float		height;
+}				t_cylinder;
+
+typedef struct s_quadratic
+{
+	float		a;
+	float		b;
+	float		c;
+	float		dist0;
+	float		dist1;
+	float		square;
+	int			sol_count;
+}				t_quadratic;
+
+typedef struct s_ray
+{
+	float		dist_max;
+	t_vector	origin;
+	t_vector	direction;
+}				t_ray;
+
+typedef struct s_inter
+{
+	float		dist;
+	t_ray		ray;
+	t_shape		*shape;
+	t_color		color;
+}				t_inter;
+
 typedef struct s_data
 {
 	t_app		*app;
 	t_ambient	*ambient;
 	t_camera	*camera;
 	t_light		*light;
+	t_shape		*shape;
+	t_cylinder	*cylinder;
+	t_sphere	*sphere;
+	t_plane		*plane;
 }			t_data;
-
-// ERRORS
-void	error_exit(char *msg);
-void	system_error(char *msg);
 
 // INIT
 void	init_minirt(char *file);
 void	data_init(t_data *data);
 
-// Read
-char	*read_file(char *file);
+// READ & PARSE
+char	*read_file(char *file, t_data *data);
+void	parse_ambient(char *line, t_data *data);
+void	parse_light(char *line, t_data *data);
+void	parse_camera(char *line, t_data *data);
+void	parse_sphere(char *line, t_data *data);
+void	parse_plane(char *line, t_data *data);
+void	parse_cylinder(char *line, t_data *data);
 
-// FREEE
+// UTILS
+char	*clean_line(char *line);
+
+//VALIDATIONS
+int		validate_coordinates(char *str, t_vector *coords);
+int		validate_color(char *str, t_color *color);
+int		validate_ratio(char *str, float *ratio);
+int		validate_fov(char *str, float *fov);
+int		validate_positive_float(char *str, float *value);
+
+// ERRORS
+void	exit_message(char *msg);
+void	exit_free_array(char *msg, char **array);
+void	exit_free_data(char *msg, t_data *data);
+
+// FREE
+void	free_array(char **array);
 void	free_data(t_data *data);
+void	exit_free_all(char *msg, t_data *data, char **array);
+
+void	print_parsed_data(t_data *data);
 
 #endif

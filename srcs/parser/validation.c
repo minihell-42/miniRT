@@ -1,0 +1,93 @@
+#include "miniRT.h"
+
+static int	parse_float(char *str, float *result)
+{
+	double	value;
+
+	if (!str || !result)
+		return (0);
+	value = ft_atof(str);
+	*result = (float)value;
+	return (1);
+}
+
+static int	parse_int(char *str, int *result)
+{
+	long	value;
+
+	if (!str || !result)
+		return (0);
+	value = ft_atol(str);
+	if (value < INT_MIN || value > INT_MAX)
+		return (0);
+	*result = (int)value;
+	return (1);
+}
+
+int	validate_coordinates(char *str, t_vector *coords)
+{
+	char	**parts;
+	int		success;
+
+	if (!str || !coords)
+		return (0);
+	parts = ft_split(str, ',');
+	if (!parts || !parts[0] || !parts[1] || !parts[2])
+	{
+		free_array(parts);
+		return (0);
+	}
+	success = parse_float(parts[0], &coords->x) &&
+			  parse_float(parts[1], &coords->y) &&
+			  parse_float(parts[2], &coords->z);
+	free_array(parts);
+	return (success);
+}
+
+int	validate_color(char *str, t_color *color)
+{
+	char	**parts;
+	int		success;
+
+	if (!str || !color)
+		return (0);
+	parts = ft_split(str, ',');
+	if (!parts || !parts[0] || !parts[1] || !parts[2])
+	{
+		free_array(parts);
+		return (0);
+	}
+	success = parse_int(parts[0], &color->r) &&
+			  parse_int(parts[1], &color->g) &&
+			  parse_int(parts[2], &color->b);
+	if (success && (color->r < 0 || color->r > 255 ||
+					color->g < 0 || color->g > 255 ||
+					color->b < 0 || color->b > 255))
+		success = 0;
+	free_array(parts);
+	return (success);
+}
+
+int	validate_ratio(char *str, float *ratio)
+{
+	if (!str || !ratio)
+		return (0);
+	*ratio = ft_atof(str);
+	return (*ratio >= 0.0 && *ratio <= 1.0);
+}
+
+int	validate_fov(char *str, float *fov)
+{
+	if (!str || !fov)
+		return (0);
+	*fov = ft_atof(str);
+	return (*fov > 0.0 && *fov < 180.0);
+}
+
+int	validate_positive_float(char *str, float *value)
+{
+	if (!str || !value)
+		return (0);
+	*value = ft_atof(str);
+	return (*value > 0.0);
+}
