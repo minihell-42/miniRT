@@ -83,7 +83,7 @@ char	*read_to_buffer(int fd, char *buffer)
 
 	if (!buffer)
 		buffer = ft_calloc(1, sizeof(char));
-	temp = ft_calloc (BUFFER_SIZE + 1, sizeof(char));
+	temp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
