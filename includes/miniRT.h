@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:11 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/29 18:21:22 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:42:22 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,7 @@ typedef struct s_data
 	t_camera	*camera;
 	t_light		*light;
 	t_shape		*shapes;
-	t_cylinder	*cylinder;
-	t_sphere	*sphere;
-	t_plane		*plane;
+	int			shape_count;
 }			t_data;
 
 // INIT
