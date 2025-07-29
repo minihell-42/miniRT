@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:11 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/25 13:52:34 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:19:07 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_shape
 	t_type		shape_type;
 	void		*object;
 	t_color		color;
+	t_shape		*next;
 
 }				t_shape;
 
@@ -163,7 +164,7 @@ typedef struct s_data
 	t_ambient	*ambient;
 	t_camera	*camera;
 	t_light		*light;
-	t_shape		*shape;
+	t_shape		*shapes;
 	t_cylinder	*cylinder;
 	t_sphere	*sphere;
 	t_plane		*plane;

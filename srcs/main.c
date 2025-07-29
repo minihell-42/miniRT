@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:21 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/25 14:04:43 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:09:49 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_parsed_data(t_data *data)
 	if (!data)
 		return ;
 	
-	ft_printf("\n=== PARSED SCENE DATA ===\n");
+	ft_printf("\n=================\n");
 	
 	// Print Ambient data
 	if (data->ambient)
