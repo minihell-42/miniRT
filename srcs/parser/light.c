@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/29 18:04:35 by samcasti          #+#    #+#             */
+/*   Updated: 2025/07/29 18:04:37 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 void	parse_light(char *line, t_data *data)
 {
-	char	**tokens;
-	float	ratio;
+	char		**tokens;
+	float		ratio;
 	t_vector	coordinates;
 
 	tokens = ft_split(line, '\t');

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/29 18:12:08 by samcasti          #+#    #+#             */
+/*   Updated: 2025/07/29 18:19:32 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
-static int skip_spaces(char *line, int i)
+static int	skip_spaces(char *line, int i)
 {
 	while (ft_isspace(line[i]))
 		i++;
@@ -9,9 +21,9 @@ static int skip_spaces(char *line, int i)
 
 static char	*normalize_line(char *line)
 {
-	int i;
-	int j;
-	int in_token;
+	int	i;
+	int	j;
+	int	in_token;
 
 	i = 0;
 	j = 0;
@@ -53,4 +65,28 @@ char	*clean_line(char *line)
 		i--;
 	}
 	return (line);
+}
+
+int	parse_float(char *str, float *result)
+{
+	double	value;
+
+	if (!str || !result)
+		return (0);
+	value = ft_atof(str);
+	*result = (float)value;
+	return (1);
+}
+
+int	parse_int(char *str, int *result)
+{
+	long	value;
+
+	if (!str || !result)
+		return (0);
+	value = ft_atol(str);
+	if (value < INT_MIN || value > INT_MAX)
+		return (0);
+	*result = (int)value;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 14:00:25 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/25 14:10:36 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:03:01 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ char	*read_file(char *file, t_data *data)
 		free(line);
 	}
 	close(fd);
-	return (0);
+	return (NULL);
 }

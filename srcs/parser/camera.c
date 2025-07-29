@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/29 18:09:41 by samcasti          #+#    #+#             */
+/*   Updated: 2025/07/29 18:10:15 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 void	parse_camera(char *line, t_data *data)
 {
-	char	**tokens;
+	char		**tokens;
 	t_vector	coordinates;
 	t_vector	normalized;
-	float	fov;
+	float		fov;
 
 	tokens = ft_split(line, '\t');
 	if (!tokens)
@@ -15,7 +27,7 @@ void	parse_camera(char *line, t_data *data)
 	if (!validate_coordinates(tokens[1], &coordinates))
 		exit_free_all("Invalid coordinates format for camera", data, tokens);
 	if (!validate_coordinates(tokens[2], &normalized))
-		exit_free_all("Invalid normalized vector format for camera", data, tokens);
+		exit_free_all("Invalid normalized vec for camera", data, tokens);
 	if (!validate_fov(tokens[3], &fov))
 		exit_free_all("Camera FOV must be between 0 and 180", data, tokens);
 	data->camera->coordinates = coordinates;

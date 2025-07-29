@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 13:56:42 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/25 13:56:55 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:21:30 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	data_init(t_data *data)
 	data->camera = malloc(sizeof(t_camera));
 	if (!data->cylinder || !data->plane || !data->sphere)
 		exit_message("Allocation shape failure");
-	if (!data->app || !data->ambient || !data->light || !data->camera || !data->app->image)
+	if (!data->app || !data->ambient || !data->light
+		|| !data->camera || !data->app->image)
 		exit_message("Allocation failure");
 }
 
@@ -37,6 +38,4 @@ void	init_minirt(char *file)
 		exit_message("Allocation failure");
 	data_init(data);
 	read_file(file, data);
-	print_parsed_data(data);
 }
-

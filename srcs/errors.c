@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 13:55:54 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/25 13:56:19 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:11:30 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ void	exit_free_all(char *msg, t_data *data, char **array)
 	free_data(data);
 	exit(EXIT_FAILURE);
 }
-

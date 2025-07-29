@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/29 17:56:34 by samcasti          #+#    #+#             */
+/*   Updated: 2025/07/29 18:10:59 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 void	free_array(char **array)
@@ -20,7 +32,8 @@ void	free_app(t_data *data)
 	if (data->app->image)
 	{
 		if (data->app->image->img_ptr)
-			mlx_destroy_image(data->app->mlx_connection, data->app->image->img_ptr);
+			mlx_destroy_image(data->app->mlx_connection,
+				data->app->image->img_ptr);
 		free(data->app->image);
 	}
 	if (data->app->mlw_window)

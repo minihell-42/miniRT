@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:11 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/29 16:19:07 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:21:22 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ typedef enum s_type
 	CYLINDER
 }				t_type;
 
+typedef struct s_shape t_shape;
+
 typedef struct s_shape
 {
 	t_type		shape_type;
@@ -185,6 +187,8 @@ void	parse_cylinder(char *line, t_data *data);
 
 // UTILS
 char	*clean_line(char *line);
+int	parse_float(char *str, float *result);
+int	parse_int(char *str, int *result);
 
 //VALIDATIONS
 int		validate_coordinates(char *str, t_vector *coords);
@@ -202,7 +206,5 @@ void	exit_free_data(char *msg, t_data *data);
 void	free_array(char **array);
 void	free_data(t_data *data);
 void	exit_free_all(char *msg, t_data *data, char **array);
-
-void	print_parsed_data(t_data *data);
 
 #endif

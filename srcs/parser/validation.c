@@ -1,28 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/29 18:00:23 by samcasti          #+#    #+#             */
+/*   Updated: 2025/07/29 18:18:42 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
-
-static int	parse_float(char *str, float *result)
-{
-	double	value;
-
-	if (!str || !result)
-		return (0);
-	value = ft_atof(str);
-	*result = (float)value;
-	return (1);
-}
-
-static int	parse_int(char *str, int *result)
-{
-	long	value;
-
-	if (!str || !result)
-		return (0);
-	value = ft_atol(str);
-	if (value < INT_MIN || value > INT_MAX)
-		return (0);
-	*result = (int)value;
-	return (1);
-}
 
 int	validate_coordinates(char *str, t_vector *coords)
 {
@@ -37,9 +25,9 @@ int	validate_coordinates(char *str, t_vector *coords)
 		free_array(parts);
 		return (0);
 	}
-	success = parse_float(parts[0], &coords->x) &&
-			  parse_float(parts[1], &coords->y) &&
-			  parse_float(parts[2], &coords->z);
+	success = parse_float(parts[0], &coords->x)
+		&& parse_float(parts[1], &coords->y)
+		&& parse_float(parts[2], &coords->z);
 	free_array(parts);
 	return (success);
 }
@@ -57,12 +45,12 @@ int	validate_color(char *str, t_color *color)
 		free_array(parts);
 		return (0);
 	}
-	success = parse_int(parts[0], &color->r) &&
-			  parse_int(parts[1], &color->g) &&
-			  parse_int(parts[2], &color->b);
-	if (success && (color->r < 0 || color->r > 255 ||
-					color->g < 0 || color->g > 255 ||
-					color->b < 0 || color->b > 255))
+	success = parse_int(parts[0], &color->r)
+		&& parse_int(parts[1], &color->g)
+		&& parse_int(parts[2], &color->b);
+	if (success && (color->r < 0 || color->r > 255
+			|| color->g < 0 || color->g > 255
+			|| color->b < 0 || color->b > 255))
 		success = 0;
 	free_array(parts);
 	return (success);
