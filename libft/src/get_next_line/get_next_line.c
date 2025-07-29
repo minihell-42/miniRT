@@ -72,7 +72,7 @@ char	*ft_join_free(char *buffer, char *read_buffer)
 	char	*temp;
 
 	temp = ft_strjoin(buffer, read_buffer);
-	free (buffer);
+	free(buffer);
 	return (temp);
 }
 
