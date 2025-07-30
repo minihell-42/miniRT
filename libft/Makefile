@@ -10,7 +10,7 @@ INCS_DIR = include
 PRINTF_DIR = src/ft_printf
 GNL_DIR = src/get_next_line
 
-SRCS = $(SRCS_DIR)/ft_strncmp.c $(SRCS_DIR)/ft_strcmp.c $(SRCS_DIR)/ft_isascii.c $(SRCS_DIR)/ft_isalnum.c $(SRCS_DIR)/ft_isalpha.c $(SRCS_DIR)/ft_isdigit.c\
+SRCS = $(SRCS_DIR)/ft_strncmp.c $(SRCS_DIR)/ft_strcmp.c $(SRCS_DIR)/ft_isascii.c $(SRCS_DIR)/ft_isalnum.c $(SRCS_DIR)/ft_isalpha.c $(SRCS_DIR)/ft_isdigit.c $(SRCS_DIR)/ft_atof.c\
 	$(SRCS_DIR)/ft_isprint.c $(SRCS_DIR)/ft_atoi.c $(SRCS_DIR)/ft_atol.c $(SRCS_DIR)/ft_bzero.c $(SRCS_DIR)/ft_calloc.c $(SRCS_DIR)/ft_memchr.c\
 	$(SRCS_DIR)/ft_memcmp.c $(SRCS_DIR)/ft_memcpy.c $(SRCS_DIR)/ft_memmove.c $(SRCS_DIR)/ft_memset.c $(SRCS_DIR)/ft_strchr.c $(SRCS_DIR)/ft_isspace.c\
 	$(SRCS_DIR)/ft_strdup.c $(SRCS_DIR)/ft_strndup.c $(SRCS_DIR)/ft_strlcat.c $(SRCS_DIR)/ft_strlcpy.c $(SRCS_DIR)/ft_strlen.c $(SRCS_DIR)/ft_strnstr.c\
@@ -20,7 +20,7 @@ SRCS = $(SRCS_DIR)/ft_strncmp.c $(SRCS_DIR)/ft_strcmp.c $(SRCS_DIR)/ft_isascii.c
 	$(SRCS_DIR)/ft_lstadd_back.c $(SRCS_DIR)/ft_lstadd_front.c $(SRCS_DIR)/ft_lstlast.c $(SRCS_DIR)/ft_lstnew.c\
 	$(SRCS_DIR)/ft_lstsize.c $(SRCS_DIR)/ft_lstclear.c $(SRCS_DIR)/ft_lstmap.c $(SRCS_DIR)/ft_lstiter.c $(SRCS_DIR)/ft_lstdelone.c\
 	$(PRINTF_DIR)/ft_printf.c $(PRINTF_DIR)/write_numbers.c $(PRINTF_DIR)/write_letters.c $(PRINTF_DIR)/write_ptr.c \
-	$(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
+	$(GNL_DIR)/get_next_line.c
 
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
