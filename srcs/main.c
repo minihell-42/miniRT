@@ -36,5 +36,10 @@ int	main(int argc, char **argv)
     // INIT DATA AND PARSE
     data_init(data);
     parse(data);
+    render(data);
+    mlx_hook(data->app->mlw_window, 17, 0, clean_exit_wrapper, data);
+	mlx_key_hook(data->app->mlw_window, handle_key, data->app);
+	mlx_loop(data->app->mlx_connection);
+	clean_exit(data);
     return (0);
 }
