@@ -15,68 +15,6 @@
 
 # include "miniRT.h"
 
-typedef enum s_type
-{
-	SPHERE,
-	PLANE,
-	CYLINDER
-}				t_type;
-
-typedef struct s_shape
-{
-	t_type		shape_type;
-	void		*object;
-	t_color		color;
-  t_shape   *next;
-
-}				t_shape;
-
-typedef struct s_sphere
-{
-	t_vector	center;
-	float		radius;
-}				t_sphere;
-
-typedef struct s_plane
-{
-	t_vector	point;
-	t_vector	normal;
-}				t_plane;
-
-typedef struct s_cylinder
-{
-	t_vector	center;
-	t_vector	normal;
-	float		radius;
-	float		height;
-}				t_cylinder;
-
-typedef struct s_quadratic
-{
-	float		a;
-	float		b;
-	float		c;
-	float		dist0;
-	float		dist1;
-	float		square;
-	int			sol_count;
-}				t_quadratic;
-
-typedef struct s_ray
-{
-	float		dist_max;
-	t_vector	origin;
-	t_vector	direction;
-}				t_ray;
-
-typedef struct s_inter
-{
-	float		dist;
-	t_ray		ray;
-	t_shape		*shape;
-	t_color		color;
-}				t_inter;
-
 // VECTOR UTILS
 float			vec_len(t_vector v);
 float			vec_dot(t_vector v1, t_vector v2);
