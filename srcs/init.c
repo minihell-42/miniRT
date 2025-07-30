@@ -14,19 +14,16 @@
 
 void	data_init(t_data *data)
 {
-	data->cylinder = malloc(sizeof(t_cylinder));
-	data->sphere = malloc(sizeof(t_sphere));
-	data->plane = malloc(sizeof(t_plane));
 	data->app = malloc(sizeof(t_app));
 	data->app->image = malloc(sizeof(t_image));
 	data->ambient = malloc(sizeof(t_ambient));
 	data->light = malloc(sizeof(t_light));
 	data->camera = malloc(sizeof(t_camera));
-	if (!data->cylinder || !data->plane || !data->sphere)
-		exit_message("Allocation shape failure");
-	if (!data->app || !data->ambient || !data->light
-		|| !data->camera || !data->app->image)
+	if (!data->app || !data->ambient || !data->light || !data->camera
+		|| !data->app->image)
 		exit_message("Allocation failure");
+	data->shapes = NULL;
+	data->shape_count = 0;
 }
 
 void	init_minirt(char *file)
@@ -38,4 +35,7 @@ void	init_minirt(char *file)
 		exit_message("Allocation failure");
 	data_init(data);
 	read_file(file, data);
+	// AQUI IRIA EL RESTO 
+	
+	free_data(data);
 }

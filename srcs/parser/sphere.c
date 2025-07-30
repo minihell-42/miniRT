@@ -12,6 +12,27 @@
 
 #include "miniRT.h"
 
+int	create_sphere(t_data *data, t_vector center, float radius, t_color color)
+{
+	t_sphere	*sphere;
+	t_shape		*shape;
+
+	sphere = malloc(sizeof(t_sphere));
+	if (!sphere)
+		return (0);
+	sphere->center = center;
+	sphere->radius = radius;
+	shape = create_node(SPHERE, sphere, data);
+	if (!shape)
+	{
+		free(sphere);
+		return (0);
+	}
+	shape->color = color;
+	append_node(data, shape);
+	return (1);
+}
+
 void	parse_sphere(char *line, t_data *data)
 {
 	char		**tokens;
@@ -29,6 +50,8 @@ void	parse_sphere(char *line, t_data *data)
 	if (!validate_positive_float(tokens[2], &radius))
 		exit_free_all("Sphere radius must be positive", data, tokens);
 	if (!validate_color(tokens[3], &color))
-		exit_free_all("Sphere radius must be positive", data, tokens);
+		exit_free_all("Invalid color format for sphere", data, tokens);
+	if (!create_sphere(data, center, radius, color))
+		exit_free_all("Failed to create sphere", data, tokens);
 	free_array(tokens);
 }
