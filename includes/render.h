@@ -27,6 +27,7 @@ typedef struct s_shape
 	t_type		shape_type;
 	void		*object;
 	t_color		color;
+  t_shape   *next;
 
 }				t_shape;
 
@@ -116,9 +117,18 @@ t_vector		plane_normal(const t_plane *pl, t_vector hit_point);
 t_vector		cylinder_normal(const t_cylinder *cy, t_vector hit_point);
 
 // COLOR
-t_color			color_add(t_color c1, t_color c2);
-t_color			color_mult(t_color c1, t_color c2);
-t_color			color_scalar_mult(t_color c, float scalar);
-t_color			apply_gamma_correction(t_color c, float exposure, float gamma);
-t_vector		vec_clamp(t_vector v, float min, float max);
+t_color   color_add(t_color c1, t_color c2);
+t_color   color_mult(t_color c1, t_color c2);
+t_color   color_scalar_mult(t_color c, float scalar);
+t_color   apply_gamma_correction(t_color c, float exposure, float gamma);
+t_vector  vec_clamp(t_vector v, float min, float max);
+
+// CAMERA
+void  build_orth_basis(t_camera *cam);
+void  define_viewpt(t_viewpt *vp, float fov);
+
+// EVENTS
+void	clean_exit(t_data *data);
+int	  handle_key(int keysym, t_app *app);
+
 #endif

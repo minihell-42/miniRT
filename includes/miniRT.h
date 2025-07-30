@@ -25,6 +25,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
+# include <readline/readline.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include "../minilibx/mlx.h"
+# include "render.h"
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846264338327950288f
@@ -48,7 +54,7 @@ typedef struct s_vector
 	float		z;
 }				t_vector;
 
-// Color struct
+// Color structx
 typedef struct s_color
 {
 	int			r;
@@ -59,17 +65,30 @@ typedef struct s_color
 // Ambient struct
 typedef struct s_ambient
 {
-	float		ratio;
-	t_color		color;
-}				t_ambient;
+	float	ratio;
+	t_color	color;
+}		t_ambient;
+
+typedef struct s_viewpt
+{
+	float	aspect_ratio;
+	float	theta;
+	float	half_height;
+	float	half_width;
+	float	u;
+	float v;
+}							t_viewpt;
 
 // Camera struct
 typedef struct s_camera
 {
 	t_vector	coordinates;
 	t_vector	normalized;
-	float		fov;
-}				t_camera;
+	t_vector	up;
+	t_vector	right;
+	t_viewpt	view_port;
+	float			fov;
+}		t_camera;
 
 // Light struct
 typedef struct s_light
@@ -99,11 +118,13 @@ typedef struct s_app
 
 typedef struct s_data
 {
-	t_app		*app;
-	t_ambient	*ambient;
-	t_camera	*camera;
-	t_light		*light;
-}				t_data;
+	t_app *app;
+	t_ambient *ambient;
+	t_camera *camera;
+	t_light *light;
+	t_shape	*shapes;
+	int			shape_count;
+}			t_data;
 
 // ERRORS
 void			error_exit(char *msg);
