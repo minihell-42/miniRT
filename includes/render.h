@@ -65,6 +65,9 @@ t_vector  vec_clamp(t_vector v, float min, float max);
 void  build_orth_basis(t_camera *cam);
 void  define_viewpt(t_viewpt *vp, float fov);
 
+// AMBIENT LIGHT
+void  ambient_computation(t_ambient *amb);
+
 // EVENTS
 void	clean_exit(t_data *data);
 int	  handle_key(int keysym, t_app *app);
