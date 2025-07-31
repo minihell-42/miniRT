@@ -39,11 +39,11 @@ void	data_init(t_data *data)
 	data->ambient = malloc(sizeof(t_ambient));
 	data->light = malloc(sizeof(t_light));
 	data->camera = malloc(sizeof(t_camera));
+	if (!data->app || !data->ambient || !data->light || !data->camera
+		|| !data->app->image)
+		exit_message("Allocation failure");
 	data->shapes = NULL;
 	data->shape_count = 0;
-	if (!data->app || !data->ambient || !data->light
-		|| !data->camera || !data->app->image)
-		exit_message("Allocation failure");
 	if (!init_mlx(data->app))
 		exit_message("Mlx initiation failure");
 }
@@ -57,4 +57,7 @@ void	init_minirt(char *file)
 		exit_message("Allocation failure");
 	data_init(data);
 	read_file(file, data);
+	// AQUI IRIA EL RESTO 
+	
+	free_data(data);
 }

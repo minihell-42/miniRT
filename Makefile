@@ -18,6 +18,11 @@ LIBFT_NAME = libft.a
 LIBFT = $(LIBFT_DIR)$(LIBFT_NAME)
 
 SRC = $(SRC_DIR)/main.c $(SRC_DIR)/errors.c $(SRC_DIR)/init.c \
+			$(SRC_DIR)/parser/read.c $(SRC_DIR)/parser/ambient.c \
+			$(SRC_DIR)/parser/light.c $(SRC_DIR)/parser/camera.c \
+			$(SRC_DIR)/parser/sphere.c $(SRC_DIR)/parser/plane.c $(SRC_DIR)/parser/cylinder.c \
+			$(SRC_DIR)/parser/validation.c $(SRC_DIR)/parser/shape_node.c \
+			$(SRC_DIR)/free.c $(SRC_DIR)/parser/utils.c $(SRC_DIR)/tests.c \
 			$(SRC_DIR)/render/vec_math.c $(SRC_DIR)/render/vec_utils.c \
 			$(SRC_DIR)/render/ray.c $(SRC_DIR)/render/intersection.c \
 			$(SRC_DIR)/render/shapes.c $(SRC_DIR)/render/plane.c \

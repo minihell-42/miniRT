@@ -36,7 +36,10 @@ char	*read_file(char *file, t_data *data)
 		else if (line[0] == 'c' && line[1] == 'y')
 			parse_cylinder(line, data);
 		else if (line[0] != '\0' && line[0] != '\t')
+		{
+			free(line);
 			exit_free_data("Unknown identifier in file", data);
+		}
 		free(line);
 	}
 	close(fd);
