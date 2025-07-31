@@ -19,10 +19,7 @@ void	parse_camera(char *line, t_data *data)
 	float		fov;
 
 	if (data->camera->is_set)
-	{
-		free(line);
 		exit_free_data("Multiple camera definitions found", data);
-	}
 	tokens = ft_split(line, '\t');
 	if (!tokens)
 		exit_free_data("Memory allocation failed", data);

@@ -19,10 +19,7 @@ void	parse_light(char *line, t_data *data)
 	t_vector	coordinates;
 
 	if (data->light->is_set)
-	{
-		free(line);
 		exit_free_data("Multiple light definitions found", data);
-	}
 	tokens = ft_split(line, '\t');
 	if (!tokens)
 		exit_free_data("Memory allocation failed", data);

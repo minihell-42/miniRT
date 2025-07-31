@@ -19,10 +19,7 @@ void	parse_ambient(char *line, t_data *data)
 	t_color	color;
 
 	if (data->ambient->is_set)
-	{
-		free(line);
 		exit_free_data("Multiple ambient light definitions found", data);
-	}
 	tokens = ft_split(line, '\t');
 	if (!tokens)
 		exit_free_data("Memory allocation failed", data);
