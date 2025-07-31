@@ -24,15 +24,10 @@ int	correct_extension(char *str)
 
 int	main(int argc, char **argv)
 {
-    t_data *data;
-
     if (argc != 2)
         error_exit("Invalid number of arguments");
     if (!correct_extension(argv[1]))
         error_exit("Invalid extension of file");
-    data = malloc(sizeof(t_data));
-    if (!data)
-        error_exit("Allocation failure");
     init_minirt(argv[1]);
     render(data);
     mlx_hook(data->app->mlw_window, 17, 0, clean_exit_wrapper, data);

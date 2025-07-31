@@ -186,9 +186,7 @@ typedef struct s_data
 	t_camera	*camera;
 	t_light		*light;
 	t_shape		*shapes;
-	t_cylinder	*cylinder;
-	t_sphere	*sphere;
-	t_plane		*plane;
+	int				shape_count;
 }			t_data;
 
 // INIT

@@ -34,23 +34,18 @@ int	init_mlx(t_app *app)
 
 void	data_init(t_data *data)
 {
-	data->cylinder = malloc(sizeof(t_cylinder));
-	data->sphere = malloc(sizeof(t_sphere));
-	data->plane = malloc(sizeof(t_plane));
 	data->app = malloc(sizeof(t_app));
-	data->app->image = malloc(sizeof(t_image));
+	data->app.image = malloc(sizeof(t_image));
 	data->ambient = malloc(sizeof(t_ambient));
 	data->light = malloc(sizeof(t_light));
 	data->camera = malloc(sizeof(t_camera));
 	data->shapes = NULL;
 	data->shape_count = 0;
-	if (!init_mlx(data->app))
-		exit(EXIT_FAILURE); // needs an exit function
-	if (!data->cylinder || !data->plane || !data->sphere)
-		exit_message("Allocation shape failure");
 	if (!data->app || !data->ambient || !data->light
 		|| !data->camera || !data->app->image)
 		exit_message("Allocation failure");
+	if (!init_mlx(data->app))
+		exit_message("Mlx initiation failure");
 }
 
 void	init_minirt(char *file)
