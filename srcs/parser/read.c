@@ -43,8 +43,10 @@ static void	process_file(int fd, t_data *data)
 	while (line)
 	{
 		parse_line(line, data);
+		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 }
 
 char	*read_file(char *file, t_data *data)
