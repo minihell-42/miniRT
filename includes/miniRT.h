@@ -61,6 +61,7 @@ typedef struct s_ambient
 {
 	float				ratio;
 	t_color				color;
+	int					is_set;
 }						t_ambient;
 
 // Camera struct
@@ -69,6 +70,7 @@ typedef struct s_camera
 	t_vector			coordinates;
 	t_vector			normalized;
 	float				fov;
+	int					is_set;
 }						t_camera;
 
 // Light struct
@@ -76,6 +78,7 @@ typedef struct s_light
 {
 	float				ratio;
 	t_vector			coordinates;
+	int					is_set;
 }						t_light;
 
 // MLX Image struct

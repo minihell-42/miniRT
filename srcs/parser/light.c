@@ -18,6 +18,11 @@ void	parse_light(char *line, t_data *data)
 	float		ratio;
 	t_vector	coordinates;
 
+	if (data->light->is_set)
+	{
+		free(line);
+		exit_free_data("Multiple light definitions found", data);
+	}
 	tokens = ft_split(line, '\t');
 	if (!tokens)
 		exit_free_data("Memory allocation failed", data);
@@ -29,5 +34,6 @@ void	parse_light(char *line, t_data *data)
 		exit_free_all("Light ratio must be between 0 and 1", data, tokens);
 	data->light->coordinates = coordinates;
 	data->light->ratio = ratio;
+	data->light->is_set = 1;
 	free_array(tokens);
 }

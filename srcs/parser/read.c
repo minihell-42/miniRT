@@ -49,7 +49,7 @@ static void	process_file(int fd, t_data *data)
 
 char	*read_file(char *file, t_data *data)
 {
-	int		fd;
+	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

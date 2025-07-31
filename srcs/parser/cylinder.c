@@ -39,7 +39,7 @@ void	parse_cylinder(char *line, t_data *data)
 {
 	char		**tokens;
 	t_cylinder	cylinder;
-	t_color color;
+	t_color		color;
 
 	tokens = ft_split(line, '\t');
 	if (!tokens)
