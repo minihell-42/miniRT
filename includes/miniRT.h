@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # include "../libft/include/libft.h"
-# include "../minilibx/mlx.h"
+# include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
