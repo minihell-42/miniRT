@@ -12,20 +12,20 @@
 
 #include "miniRT.h"
 
-int	create_plane(t_data *data, t_vector point, t_vector normal, t_color color)
+static int	create_plane(t_data *data, t_plane *plane, t_color color)
 {
-	t_plane	*plane;
+	t_plane	*new_plane;
 	t_shape	*shape;
 
-	plane = malloc(sizeof(t_plane));
-	if (!plane)
+	new_plane = malloc(sizeof(t_plane));
+	if (!new_plane)
 		return (0);
-	plane->point = point;
-	plane->normal = normal;
-	shape = create_node(PLANE, plane, data);
+	new_plane->point = plane->point;
+	new_plane->normal = plane->normal;
+	shape = create_node(PLANE, new_plane, data);
 	if (!shape)
 	{
-		free(plane);
+		free(new_plane);
 		return (0);
 	}
 	shape->color = color;
@@ -35,23 +35,22 @@ int	create_plane(t_data *data, t_vector point, t_vector normal, t_color color)
 
 void	parse_plane(char *line, t_data *data)
 {
-	char		**tokens;
-	t_vector	point;
-	t_vector	normal;
-	t_color		color;
+	char	**tokens;
+	t_plane	plane;
+	t_color	color;
 
 	tokens = ft_split(line, '\t');
 	if (!tokens)
 		exit_free_data("Memory allocation failed", data);
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3])
 		exit_free_all("Invalid plane line format", data, tokens);
-	if (!validate_coordinates(tokens[1], &point))
+	if (!validate_coordinates(tokens[1], &plane.point))
 		exit_free_all("Invalid coordinates for plane", data, tokens);
-	if (!validate_coordinates(tokens[2], &normal))
+	if (!validate_coordinates(tokens[2], &plane.normal))
 		exit_free_all("Invalid normalized vec for plane", data, tokens);
 	if (!validate_color(tokens[3], &color))
 		exit_free_all("Invalid color format for plane", data, tokens);
-	if (!create_plane(data, point, normal, color))
+	if (!create_plane(data, &plane, color))
 		exit_free_all("Failed to create plane", data, tokens);
 	free_array(tokens);
 }

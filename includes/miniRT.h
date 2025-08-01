@@ -41,13 +41,13 @@
 # define WIDTH 700
 
 // Key codes
-#  define KEY_LEFT 65361
-#  define KEY_RIGHT 65363
-#  define KEY_UP 65362
-#  define KEY_DOWN 65364
-#  define KEY_PLUS 43
-#  define KEY_MINUS 45
-#  define KEY_ESC 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_PLUS 43
+# define KEY_MINUS 45
+# define KEY_ESC 65307
 
 // Vector struct
 typedef struct s_vector
@@ -208,23 +208,17 @@ int						validate_positive_float(char *str, float *value);
 // SHAPE CREATION
 t_shape					*create_node(t_type type, void *shape, t_data *data);
 void					append_node(t_data *data, t_shape *new_shape);
-int						create_sphere(t_data *data, t_vector center,
-							float radius, t_color color);
-int						create_plane(t_data *data, t_vector point,
-							t_vector normal, t_color color);
-int						create_cylinder(t_data *data, t_cylinder *cylinder,
-							t_color color);
 
 // ERRORS
 void					exit_message(char *msg);
 void					exit_free_array(char *msg, char **array);
 void					exit_free_data(char *msg, t_data *data);
+void					exit_free_all(char *msg, t_data *data, char **array);
 
 // FREE
 void					free_array(char **array);
 void					free_shapes(t_shape *shapes);
 void					free_data(t_data *data);
-void					exit_free_all(char *msg, t_data *data, char **array);
 
 // EVENTS
 void					setup_events(t_data *data);
