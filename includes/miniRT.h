@@ -40,6 +40,15 @@
 # define HEIGHT 700
 # define WIDTH 700
 
+// Key codes
+#  define KEY_LEFT 65361
+#  define KEY_RIGHT 65363
+#  define KEY_UP 65362
+#  define KEY_DOWN 65364
+#  define KEY_PLUS 43
+#  define KEY_MINUS 45
+#  define KEY_ESC 65307
+
 // Vector struct
 typedef struct s_vector
 {
@@ -174,10 +183,9 @@ typedef struct s_data
 
 // INIT
 void					init_minirt(char *file);
-void					data_init(t_data *data);
 
 // READ & PARSE
-char					*read_file(char *file, t_data *data);
+void					read_file(char *file, t_data *data);
 void					parse_ambient(char *line, t_data *data);
 void					parse_light(char *line, t_data *data);
 void					parse_camera(char *line, t_data *data);
@@ -217,5 +225,10 @@ void					free_array(char **array);
 void					free_shapes(t_shape *shapes);
 void					free_data(t_data *data);
 void					exit_free_all(char *msg, t_data *data, char **array);
+
+// EVENTS
+void					setup_events(t_data *data);
+int						on_close(t_data *data);
+int						on_key_press(int key, t_data *data);
 
 #endif

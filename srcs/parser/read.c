@@ -32,7 +32,6 @@ static void	parse_line(char *line, t_data *data)
 		free(line);
 		exit_free_data("Unknown identifier in file", data);
 	}
-	free(line);
 }
 
 static void	process_file(int fd, t_data *data)
@@ -49,7 +48,7 @@ static void	process_file(int fd, t_data *data)
 	free(line);
 }
 
-char	*read_file(char *file, t_data *data)
+void	read_file(char *file, t_data *data)
 {
 	int	fd;
 
@@ -58,5 +57,4 @@ char	*read_file(char *file, t_data *data)
 		exit_free_data("Cannot open file", data);
 	process_file(fd, data);
 	close(fd);
-	return (NULL);
 }

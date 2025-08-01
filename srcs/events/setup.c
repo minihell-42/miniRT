@@ -1,0 +1,9 @@
+#include "miniRT.h"
+
+void	setup_events(t_data *data)
+{
+	mlx_hook(data->app->mlx_window, DestroyNotify, StructureNotifyMask,
+			on_close, data);
+	mlx_hook(data->app->mlx_window, KeyPress, KeyPressMask, on_key_press,
+			data);
+}
