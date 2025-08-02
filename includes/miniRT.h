@@ -15,21 +15,15 @@
 
 # include "../libft/include/libft.h"
 # include "../minilibx/mlx.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <math.h>
 # include <readline/readline.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <fcntl.h>
 # include <signal.h>
-# include <stdbool.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdbool.h>
-# include <readline/readline.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include "../minilibx/mlx.h"
 # include "render.h"
 
 # ifndef M_PI

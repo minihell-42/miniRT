@@ -69,7 +69,7 @@ void  define_viewpt(t_viewpt *vp, float fov);
 void  ambient_computation(t_ambient *amb);
 
 // EVENTS
-void	clean_exit(t_data *data);
 int	  handle_key(int keysym, t_app *app);
+void	free_data_wrapper(void *param);
 
 #endif

@@ -17,25 +17,25 @@ int	init_mlx(t_app *app)
 	app->mlx_connection = mlx_init();
 	if (app->mlx_connection == NULL)
 		return(0);
-	app->mlw_window = mlx_new_window(app->mlx_connection, WIDTH, HEIGHT, "MiniRT");
-	if (app->mlw_window == NULL)
+	app->mlx_window = mlx_new_window(app->mlx_connection, WIDTH, HEIGHT, "MiniRT");
+	if (app->mlx_window == NULL)
 	{
 		mlx_destroy_display(app->mlx_connection);
 		free(app->mlx_connection);
 		return (0);
 	}
-	app->image.img_ptr = mlx_new_image(app->mlx_connection, WIDTH, HEIGHT);
-	if (app->image.img_ptr == NULL)
+	app->image->img_ptr = mlx_new_image(app->mlx_connection, WIDTH, HEIGHT);
+	if (app->image->img_ptr == NULL)
 		return (0);
-	app->image.buffer = mlx_get_data_addr(app->image.img_ptr, &app->image.bpp,
-			&app->image.length, &app->image.endian);
+	app->image->buffer = mlx_get_data_addr(app->image->img_ptr, &app->image->bpp,
+			&app->image->length, &app->image->endian);
 	return (1);
 }
 
 void	data_init(t_data *data)
 {
 	data->app = malloc(sizeof(t_app));
-	data->app.image = malloc(sizeof(t_image));
+	data->app->image = malloc(sizeof(t_image));
 	data->ambient = malloc(sizeof(t_ambient));
 	data->light = malloc(sizeof(t_light));
 	data->camera = malloc(sizeof(t_camera));
@@ -57,7 +57,9 @@ void	init_minirt(char *file)
 		exit_message("Allocation failure");
 	data_init(data);
 	read_file(file, data);
-	// AQUI IRIA EL RESTO 
-	
+	render(data);
+	mlx_hook(data->app->mlx_window, 17, 0, free_data_wrapper, data);
+	mlx_key_hook(data->app->mlx_window, handle_key, data->app);
+	mlx_loop(data->app->mlx_connection);
 	free_data(data);
 }

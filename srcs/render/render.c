@@ -34,7 +34,6 @@ void	render(t_data *data)
 	t_vector	base_color;
 	float			diff;
 
-
 	define_viewpt(&data->camera->view_port, data->camera->fov);
   build_orth_basis(data->camera);
 	ambient_computation(data->ambient);
@@ -69,7 +68,7 @@ void	render(t_data *data)
           hit.color.b * data->light->ratio * diff
         };
         /* Combine ambient + diffuse */
-        color = vec_add(ambient_comp, base_color);
+        color = vec_add((t_vector)data->ambient->color, base_color);
         /* Clamp to [0,255] */
         color = vec_clamp(color, 0.0f, 255.0f);
         /* Optional gamma correction (γ = 2.2) */
@@ -87,6 +86,6 @@ void	render(t_data *data)
 			put_pixel(data->app->image, x, y, pixel);
 		}
 	}
-	mlx_put_image_to_window(data->app->mlx_connection, data->app->mlw_window,
-      data->app->image.img_ptr, 0, 0);
+	mlx_put_image_to_window(data->app->mlx_connection, data->app->mlx_window,
+      data->app->image->img_ptr, 0, 0);
 }

@@ -25,14 +25,9 @@ int	correct_extension(char *str)
 int	main(int argc, char **argv)
 {
     if (argc != 2)
-        error_exit("Invalid number of arguments");
+        exit_message("Invalid number of arguments");
     if (!correct_extension(argv[1]))
-        error_exit("Invalid extension of file");
+        exit_message("Invalid extension of file");
     init_minirt(argv[1]);
-    render(data);
-    mlx_hook(data->app->mlw_window, 17, 0, clean_exit_wrapper, data);
-	mlx_key_hook(data->app->mlw_window, handle_key, data->app);
-	mlx_loop(data->app->mlx_connection);
-	clean_exit(data);
     return (0);
 }
