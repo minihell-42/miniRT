@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:44:29 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 // oc -> origin-to-center offset vector

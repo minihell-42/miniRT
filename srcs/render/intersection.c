@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:43:48 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 t_inter	inter_init(const t_ray *ray)

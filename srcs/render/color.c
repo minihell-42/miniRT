@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:53:14 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 t_color	color_add(t_color c1, t_color c2)

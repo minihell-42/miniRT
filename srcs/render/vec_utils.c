@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:44:43 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 float	vec_len(t_vector v)

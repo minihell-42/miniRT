@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:44:38 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+# include "miniRT.h"
 #include "render.h"
 
 t_vector	vec_add(t_vector v1, t_vector v2)

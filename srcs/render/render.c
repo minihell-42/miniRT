@@ -1,3 +1,4 @@
+# include "miniRT.h"
 #include "render.h"
 
 static void	put_pixel(t_image *image, int x, int y, int color)

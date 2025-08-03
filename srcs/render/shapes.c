@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:44:09 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 // did_hit -> boolean to know if there is an intersection

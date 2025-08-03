@@ -15,6 +15,8 @@
 
 # include "miniRT.h"
 
+void	render(t_data *data);
+
 // VECTOR UTILS
 float			vec_len(t_vector v);
 float			vec_dot(t_vector v1, t_vector v2);
@@ -70,6 +72,6 @@ void  ambient_computation(t_ambient *amb);
 
 // EVENTS
 int	  handle_key(int keysym, t_app *app);
-void	free_data_wrapper(void *param);
+int		free_data_wrapper(void *param);
 
 #endif

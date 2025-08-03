@@ -1,9 +1,10 @@
+#include "miniRT.h"
 #include "render.h"
 
-void	free_data_wrapper(void *param)
+int	free_data_wrapper(void *param)
 {
 	free_data((t_data *)param);
-  exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
 
 int	handle_key(int keysym, t_app *app)

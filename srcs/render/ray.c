@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:44:02 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 t_ray	ray_init(t_vector origin, t_vector direction, float dist_max)

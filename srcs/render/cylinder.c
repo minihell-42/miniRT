@@ -9,7 +9,7 @@
 /*   Updated: 2025/07/28 11:43:41 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 // intersect one disk cap at cap_center, return t or -1

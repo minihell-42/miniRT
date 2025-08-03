@@ -9,8 +9,8 @@
 /*   Updated: 2025/07/29 18:21:30 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "miniRT.h"
+#include "render.h"
 
 int	init_mlx(t_app *app)
 {
