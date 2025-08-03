@@ -40,15 +40,6 @@
 # define HEIGHT 700
 # define WIDTH 700
 
-// Key codes
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_PLUS 43
-# define KEY_MINUS 45
-# define KEY_ESC 65307
-
 // Vector struct
 typedef struct s_vector
 {
@@ -224,5 +215,11 @@ void					free_data(t_data *data);
 void					setup_events(t_data *data);
 int						on_close(t_data *data);
 int						on_key_press(int key, t_data *data);
+int						on_mouse_scroll(int button, int x, int y, t_data *data);
+void					translate_camera(int key, t_data *data);
+void					translate_light(int key, t_data *data);
+void					translate_object(int key, t_data *data);
+void					resize_object(int key, t_data *data);
+void					rotate_object(int key, t_data *data);
 
 #endif

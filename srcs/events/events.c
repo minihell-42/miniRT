@@ -8,7 +8,33 @@ int	on_close(t_data *data)
 
 int	on_key_press(int key, t_data *data)
 {
-	if (key == KEY_ESC)
+	if (key == XK_Escape)
 		return (on_close(data));
+	if (key == XK_Left || key == XK_Right || key == XK_Up || key == XK_Down
+		|| key == 45 || key == 43)
+		translate_object(key, data);
+	if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
+		translate_camera(key, data);
+	if (key == XK_t || key == XK_f || key == XK_g || key == XK_h || key == XK_y
+		|| key == XK_u)
+		translate_light(key, data);
+	if (key == XK_z || key == XK_x || key == XK_c || key == XK_v)
+		rotate_object(key, data);
+	if (key == XK_1 || key == XK_2)
+		resize_object(key, data);
+	return (0);
+}
+
+// TODO: check why fov value only increases
+int	on_mouse_scroll(int button, int x, int y, t_data *data)
+{
+	(void)x;
+	(void)y;
+
+	data->camera->fov /= 3.14159265358979323846 / 180.0f;
+	if (button == Button4)
+		data->camera->fov -= 10;
+	else if (button == Button5)
+		data->camera->fov += 10;
 	return (0);
 }
