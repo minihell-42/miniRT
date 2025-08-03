@@ -27,7 +27,17 @@ t_ray	ray_init_default(t_vector origin, t_vector direction)
 	return (ray_init(origin, direction, RAY_DIST_MAX));
 }
 
-t_vector	ray_at(const t_ray *ray, float dist)
+t_vector	ray_at(t_ray *ray, float dist)
 {
 	return (vec_add(ray->origin, vec_scalar_mult(ray->direction, dist)));
+}
+
+t_ray	generate_ray(t_camera *cam, t_viewpt *vp, int x, int y)
+{
+	t_ray	ray;
+
+	normalize_coord(vp, x, y);
+	ray = ray_init_default(cam->coordinates, cam->normalized);
+	ray.direction = vec_add(vec_add(vec_scalar_mult(cam->right, vp->u), vec_scalar_mult(cam->up, vp->v)), cam->normalized);
+	return (ray);
 }

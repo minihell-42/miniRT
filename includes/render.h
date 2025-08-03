@@ -36,27 +36,29 @@ t_vector	vec_scalar_div(t_vector v, float scalar);
 // RAY
 t_ray		ray_init(t_vector origin, t_vector direction, float dist_max);
 t_ray		ray_init_default(t_vector origin, t_vector direction);
-t_vector	ray_at(const t_ray *ray, float dist);
+t_ray		generate_ray(t_camera *cam, t_viewpt *vp, int x, int y);
+t_vector	ray_at(t_ray *ray, float dist);
 
 // INTERSECTION
-t_inter		inter_init(const t_ray *ray);
-t_vector	inter_pos(const t_inter *inter);
-int			inter_hit(const t_inter *inter);
+int			inter_hit(t_inter *inter);
+t_inter		inter_init(t_ray *ray);
+t_vector	inter_pos(t_inter *inter);
+t_inter		cast_ray(t_ray *ray, t_shape *shapes);
 
 //  SHAPES
-int			shape_intersect(t_inter *hit, const t_shape *shape);
-int			sphere_intersection(t_inter *hit, const t_sphere *sp);
-int			plane_intersection(t_inter *hit, const t_plane *pl);
-int			cylinder_intersection(t_inter *hit, const t_cylinder *cy);
+int			shape_intersect(t_inter *hit, t_shape *shape);
+int			sphere_intersection(t_inter *hit, t_sphere *sp);
+int			plane_intersection(t_inter *hit, t_plane *pl);
+int			cylinder_intersection(t_inter *hit, t_cylinder *cy);
 int			solve_quad(t_quadratic *quad);
-float		pick_quad_root(const t_quadratic *quad, float dist_min,
-				float dist_max);
-t_vector	shape_normal(const t_shape *shape, t_vector hit_point);
-t_vector	sphere_normal(const t_sphere *sp, t_vector hit_point);
-t_vector	plane_normal(const t_plane *pl, t_vector hit_point);
-t_vector	cylinder_normal(const t_cylinder *cy, t_vector hit_point);
+float		pick_quad_root(t_quadratic *quad, float dist_min, float dist_max);
+t_vector	shape_normal(t_shape *shape, t_vector hit_point);
+t_vector	sphere_normal(t_sphere *sp, t_vector hit_point);
+t_vector	plane_normal(t_plane *pl, t_vector hit_point);
+t_vector	cylinder_normal(t_cylinder *cy, t_vector hit_point);
 
 // COLOR
+int			shade_pixel(t_inter *hit, t_data *data);
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_mult(t_color c1, t_color c2);
 t_color		color_scalar_mult(t_color c, float scalar);
@@ -66,6 +68,7 @@ t_vector	vec_clamp(t_vector v, float min, float max);
 // CAMERA
 void		build_orth_basis(t_camera *cam);
 void		define_viewpt(t_viewpt *vp, float fov);
+void		normalize_coord(t_viewpt *vp, float x, float y);
 
 // AMBIENT LIGHT
 void		ambient_computation(t_ambient *amb);

@@ -12,7 +12,7 @@
 #include "miniRT.h"
 #include "render.h"
 
-t_inter	inter_init(const t_ray *ray)
+t_inter	inter_init(t_ray *ray)
 {
 	t_inter	inter;
 
@@ -22,12 +22,27 @@ t_inter	inter_init(const t_ray *ray)
 	return (inter);
 }
 
-t_vector	inter_pos(const t_inter *inter)
+t_vector	inter_pos(t_inter *inter)
 {
 	return (ray_at(&inter->ray, inter->dist));
 }
 
-int	inter_hit(const t_inter *inter)
+int	inter_hit(t_inter *inter)
 {
 	return (inter->shape != NULL);
+}
+
+t_inter	cast_ray(t_ray *ray, t_shape *shapes)
+{
+	t_inter	hit;
+	t_shape	*curr_shape;
+
+	hit = inter_init(ray);
+	curr_shape = shapes;
+	while (curr_shape)
+	{
+		shape_intersect(&hit, curr_shape);
+		curr_shape = curr_shape->next;
+	}
+	return (hit);
 }
