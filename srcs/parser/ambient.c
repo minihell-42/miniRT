@@ -18,6 +18,8 @@ void	parse_ambient(char *line, t_data *data)
 	float	ratio;
 	t_color	color;
 
+	if (data->ambient->is_set)
+		exit_free_data("Multiple ambient light definitions found", data);
 	tokens = ft_split(line, '\t');
 	if (!tokens)
 		exit_free_data("Memory allocation failed", data);
@@ -29,5 +31,6 @@ void	parse_ambient(char *line, t_data *data)
 		exit_free_all("Invalid color format for ambient", data, tokens);
 	data->ambient->ratio = ratio;
 	data->ambient->color = color;
+	data->ambient->is_set = 1;
 	free_array(tokens);
 }

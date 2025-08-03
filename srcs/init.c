@@ -44,13 +44,16 @@ void	data_init(t_data *data)
 		exit_message("Allocation failure");
 	data->shapes = NULL;
 	data->shape_count = 0;
+	data->ambient->is_set = 0;
+	data->camera->is_set = 0;
+	data->light->is_set = 0;
 	if (!init_mlx(data->app))
 		exit_message("Mlx initiation failure");
 }
 
 void	init_minirt(char *file)
 {
-	t_data	*data;
+	t_data *data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)

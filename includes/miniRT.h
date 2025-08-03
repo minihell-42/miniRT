@@ -15,12 +15,12 @@
 
 # include "../libft/include/libft.h"
 # include "../minilibx/mlx.h"
-# include <readline/readline.h>
-# include <X11/keysym.h>
 # include <X11/X.h>
+# include <X11/keysym.h>
 # include <fcntl.h>
-# include <signal.h>
 # include <math.h>
+# include <readline/readline.h>
+# include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -58,36 +58,39 @@ typedef struct s_color
 // Ambient struct
 typedef struct s_ambient
 {
-	float	ratio;
-	t_color	color;
-}		t_ambient;
+	float				ratio;
+	t_color				color;
+	int					is_set;
+}						t_ambient;
 
 typedef struct s_viewpt
 {
-	float	aspect_ratio;
-	float	theta;
-	float	half_height;
-	float	half_width;
-	float	u;
-	float v;
-}							t_viewpt;
+	float				aspect_ratio;
+	float				theta;
+	float				half_height;
+	float				half_width;
+	float				u;
+	float				v;
+}						t_viewpt;
 
 // Camera struct
 typedef struct s_camera
 {
-	t_vector	coordinates;
-	t_vector	normalized;
-	t_vector	up;
-	t_vector	right;
-	t_viewpt	view_port;
-	float			fov;
-}		t_camera;
+	t_vector			coordinates;
+	t_vector			normalized;
+	t_vector			up;
+	t_vector			right;
+	t_viewpt			view_port;
+	float				fov;
+	int					is_set;
+}						t_camera;
 
 // Light struct
 typedef struct s_light
 {
 	float				ratio;
 	t_vector			coordinates;
+	int					is_set;
 }						t_light;
 
 // MLX Image struct
@@ -173,13 +176,13 @@ typedef struct s_inter
 
 typedef struct s_data
 {
-	t_app		*app;
-	t_ambient	*ambient;
-	t_camera	*camera;
-	t_light		*light;
-	t_shape		*shapes;
-	int			shape_count;
-}			t_data;
+	t_app				*app;
+	t_ambient			*ambient;
+	t_camera			*camera;
+	t_light				*light;
+	t_shape				*shapes;
+	int					shape_count;
+}						t_data;
 
 // INIT
 void					init_minirt(char *file);
@@ -199,7 +202,7 @@ char					*clean_line(char *line);
 int						parse_float(char *str, float *result);
 int						parse_int(char *str, int *result);
 
-//VALIDATIONS
+// VALIDATIONS
 int						validate_coordinates(char *str, t_vector *coords);
 int						validate_color(char *str, t_color *color);
 int						validate_ratio(char *str, float *ratio);
@@ -213,8 +216,7 @@ int						create_sphere(t_data *data, t_vector center,
 							float radius, t_color color);
 int						create_plane(t_data *data, t_vector point,
 							t_vector normal, t_color color);
-int						create_cylinder(t_data *data, t_vector center,
-							t_vector normal, float radius, float height,
+int						create_cylinder(t_data *data, t_cylinder *cylinder,
 							t_color color);
 
 // ERRORS
