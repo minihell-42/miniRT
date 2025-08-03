@@ -33,6 +33,7 @@ void	render(t_data *data)
 	t_vector	Ldir;
 	t_vector	color;
 	t_vector	base_color;
+  t_vector  amb;
 	float			diff;
 
 	define_viewpt(&data->camera->view_port, data->camera->fov);
@@ -68,8 +69,11 @@ void	render(t_data *data)
           hit.color.g * data->light->ratio * diff,
           hit.color.b * data->light->ratio * diff
         };
+        amb.x = (float)data->ambient->color.r;
+        amb.y = (float)data->ambient->color.g;
+        amb.z = (float)data->ambient->color.b;
         /* Combine ambient + diffuse */
-        color = vec_add((t_vector)data->ambient->color, base_color);
+        color = vec_add(amb, base_color);
         /* Clamp to [0,255] */
         color = vec_clamp(color, 0.0f, 255.0f);
         /* Optional gamma correction (γ = 2.2) */
