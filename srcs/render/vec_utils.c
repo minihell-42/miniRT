@@ -58,11 +58,3 @@ t_vector	vec_negate(t_vector v)
 	new.z = -v.z;
 	return (new);
 }
-
-t_vector	vec_reflect(t_vector v, t_vector n)
-{
-	float	d;
-
-	d = vec_dot(v, n);
-	return (vec_sub(v, vec_scalar_mult(n, 2.0f * d)));
-}

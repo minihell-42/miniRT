@@ -6,7 +6,7 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:43:29 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/07/28 11:53:14 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:12:48 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "miniRT.h"
@@ -42,13 +42,15 @@ t_color	color_scalar_mult(t_color c, float scalar)
 	return (new);
 }
 
-t_color	apply_gamma_correction(t_color c, float exposure, float gamma)
+t_vector	apply_gamma_correction(t_vector c)
 {
-	t_color	new;
+	t_vector	new;
+	float		inv_gamma;
 
-	new.r = powf(c.r * exposure, gamma);
-	new.g = powf(c.g * exposure, gamma);
-	new.b = powf(c.b * exposure, gamma);
+	inv_gamma = 1.0f / 2.2f;
+	new.x = powf(c.x / 255.0f, inv_gamma) * 255.0f;
+	new.y = powf(c.y / 255.0f, inv_gamma) * 255.0f;
+	new.z = powf(c.z / 255.0f, inv_gamma) * 255.0f;
 	return (new);
 }
 

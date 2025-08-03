@@ -6,7 +6,7 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:42:59 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/07/28 11:43:12 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:10:55 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ float		vec_dot(t_vector v1, t_vector v2);
 t_vector	vec_cross(t_vector v1, t_vector v2);
 t_vector	vec_normalize(t_vector v);
 t_vector	vec_negate(t_vector v);
-t_vector	vec_reflect(t_vector v, t_vector n);
 
 // VECTOR MATH
 t_vector	vec_add(t_vector v1, t_vector v2);
 t_vector	vec_sub(t_vector v1, t_vector v2);
 t_vector	vec_mult(t_vector v1, t_vector v2);
 t_vector	vec_scalar_mult(t_vector v, float scalar);
-t_vector	vec_div(t_vector v1, t_vector v2);
 t_vector	vec_scalar_div(t_vector v, float scalar);
 
 // RAY
@@ -62,7 +60,7 @@ int			shade_pixel(t_inter *hit, t_data *data);
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_mult(t_color c1, t_color c2);
 t_color		color_scalar_mult(t_color c, float scalar);
-t_color		apply_gamma_correction(t_color c, float exposure, float gamma);
+t_vector	apply_gamma_correction(t_vector c);
 t_vector	vec_clamp(t_vector v, float min, float max);
 
 // CAMERA
@@ -72,6 +70,7 @@ void		normalize_coord(t_viewpt *vp, float x, float y);
 
 // AMBIENT LIGHT
 void		ambient_computation(t_ambient *amb);
+t_vector	convert_amb_vec(t_ambient *amb);
 
 // EVENTS
 int			handle_key(int keysym, t_app *app);
