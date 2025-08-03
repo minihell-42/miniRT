@@ -32,7 +32,6 @@ static void	parse_line(char *line, t_data *data)
 		free(line);
 		exit_free_data("Unknown identifier in file", data);
 	}
-	free(line);
 }
 
 static void	process_file(int fd, t_data *data)
