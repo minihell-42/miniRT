@@ -13,7 +13,7 @@
 #include "render.h"
 
 // did_hit -> boolean to know if there is an intersection
-int	shape_intersect(t_inter *hit, const t_shape *shape)
+int	shape_intersect(t_inter *hit, t_shape *shape)
 {
 	int	did_hit;
 
@@ -32,7 +32,7 @@ int	shape_intersect(t_inter *hit, const t_shape *shape)
 	return (did_hit);
 }
 
-t_vector	shape_normal(const t_shape *shape, t_vector hit_point)
+t_vector	shape_normal(t_shape *shape, t_vector hit_point)
 {
 	if (shape->shape_type == SPHERE)
 		return (sphere_normal((t_sphere *)shape->object, hit_point));
@@ -79,7 +79,7 @@ int	solve_quad(t_quadratic *quad)
 	return (quad->sol_count);
 }
 
-float	pick_quad_root(const t_quadratic *quad, float dist_min, float dist_max)
+float	pick_quad_root(t_quadratic *quad, float dist_min, float dist_max)
 {
 	if (quad->sol_count == 0)
 		return (-1.0f);

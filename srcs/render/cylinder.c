@@ -15,8 +15,7 @@
 // intersect one disk cap at cap_center, return t or -1
 // r2 -> radio al cuadrado
 // denom -> denominador
-static float	cap_intersect(const t_ray *ray, const t_cylinder *cy,
-		t_vector cap_center)
+static float	cap_intersect(t_ray *ray, t_cylinder *cy, t_vector cap_center)
 {
 	t_vector	point;
 	float		denom;
@@ -39,8 +38,8 @@ static float	cap_intersect(const t_ray *ray, const t_cylinder *cy,
 // Computes intersection with the infinite cylindrical side
 // oc -> origin-to-center vector
 // dp -> direction projected vector
-static float	cylinder_side_intersection(const t_ray *ray,
-		const t_cylinder *cy, float dist_max)
+static float	cylinder_side_intersection(t_ray *ray, t_cylinder *cy,
+		float dist_max)
 {
 	t_vector	oc;
 	t_vector	dp;
@@ -69,7 +68,7 @@ static float	cylinder_side_intersection(const t_ray *ray,
 }
 
 // Main intersection just composes side and caps
-int	cylinder_intersection(t_inter *hit, const t_cylinder *cy)
+int	cylinder_intersection(t_inter *hit, t_cylinder *cy)
 {
 	t_vector	top_center;
 	float		dist_top;
@@ -90,7 +89,7 @@ int	cylinder_intersection(t_inter *hit, const t_cylinder *cy)
 }
 
 // oc -> origin-to-center
-t_vector	cylinder_normal(const t_cylinder *cy, t_vector hit_point)
+t_vector	cylinder_normal(t_cylinder *cy, t_vector hit_point)
 {
 	t_vector	oc;
 	t_vector	proj;
