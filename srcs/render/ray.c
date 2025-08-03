@@ -6,7 +6,7 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:44:00 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/07/28 11:44:02 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:13:11 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "miniRT.h"
@@ -38,6 +38,7 @@ t_ray	generate_ray(t_camera *cam, t_viewpt *vp, int x, int y)
 
 	normalize_coord(vp, x, y);
 	ray = ray_init_default(cam->coordinates, cam->normalized);
-	ray.direction = vec_add(vec_add(vec_scalar_mult(cam->right, vp->u), vec_scalar_mult(cam->up, vp->v)), cam->normalized);
+	ray.direction = vec_add(vec_add(vec_scalar_mult(cam->right, vp->u),
+				vec_scalar_mult(cam->up, vp->v)), cam->normalized);
 	return (ray);
 }

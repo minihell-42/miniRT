@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/03 18:11:34 by dgomez-a          #+#    #+#             */
+/*   Updated: 2025/08/03 18:15:48 by dgomez-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 #include "render.h"
 
@@ -19,11 +31,11 @@ void	normalize_coord(t_viewpt *vp, float x, float y)
 
 void	render(t_data *data)
 {
-	int x;
-	int y;
-	int pixel;
-	t_ray ray;
-	t_inter hit;
+	t_inter	hit;
+	t_ray	ray;
+	int		x;
+	int		y;
+	int		pixel;
 
 	define_viewpt(&data->camera->view_port, data->camera->fov);
 	build_orth_basis(data->camera);

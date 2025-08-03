@@ -6,10 +6,10 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:44:36 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/07/28 11:44:38 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:17:05 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-# include "miniRT.h"
+#include "miniRT.h"
 #include "render.h"
 
 t_vector	vec_add(t_vector v1, t_vector v2)

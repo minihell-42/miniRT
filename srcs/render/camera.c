@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/03 18:10:59 by dgomez-a          #+#    #+#             */
+/*   Updated: 2025/08/03 18:16:23 by dgomez-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 #include "render.h"
 
@@ -11,7 +23,7 @@ void	define_viewpt(t_viewpt *vp, float fov)
 
 void	build_orth_basis(t_camera *cam)
 {
-	t_vector world_up;
+	t_vector	world_up;
 
 	world_up = (t_vector){0.0f, 1.0f, 0.0f};
 	if (fabsf(vec_dot(cam->normalized, world_up)) > 0.999f)
