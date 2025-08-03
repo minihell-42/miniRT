@@ -14,6 +14,8 @@ void	build_orth_basis(t_camera *cam)
 	t_vector world_up;
 
 	world_up = (t_vector){0.0f, 1.0f, 0.0f};
+	if (fabsf(vec_dot(cam->normalized, world_up)) > 0.999f)
+		world_up = (t_vector){1.0f, 0.0f, 0.0f};
 	cam->right = vec_normalize(vec_cross(cam->normalized, world_up));
 	cam->up = vec_cross(cam->right, cam->normalized);
 }
