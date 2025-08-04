@@ -29,3 +29,23 @@ t_vector	convert_amb_vec(t_ambient *amb)
 	amb_vec.z = (float)amb->color.b;
 	return (amb_vec);
 }
+
+t_vector	calc_diffuse(t_inter *hit, t_light *light)
+{
+	t_vector	pos;
+	t_vector	normal;
+	t_vector	light_dir;
+	t_vector	base;
+	float		diff;
+
+	pos = inter_pos(hit);
+	normal = shape_normal(hit->shape, pos);
+	light_dir = vec_normalize(vec_sub(light->coordinates, pos));
+	diff = vec_dot(normal, light_dir);
+	if (diff < 0.0f)
+		diff = 0.0f;
+	base.x = hit->color.r * light->ratio * diff;
+	base.y = hit->color.g * light->ratio * diff;
+	base.z = hit->color.b * light->ratio * diff;
+	return (base);
+}

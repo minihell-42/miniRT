@@ -71,6 +71,7 @@ void		normalize_coord(t_viewpt *vp, float x, float y);
 // AMBIENT LIGHT
 void		ambient_computation(t_ambient *amb);
 t_vector	convert_amb_vec(t_ambient *amb);
+t_vector	calc_diffuse(t_inter *hit, t_light *light);
 
 // EVENTS
 int			handle_key(int keysym, t_app *app);

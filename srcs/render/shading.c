@@ -23,24 +23,32 @@ int	vector_to_int(t_vector col)
 	return (new.r << 16 | new.g << 8 | new.b);
 }
 
-t_vector	calc_diffuse(t_inter *hit, t_light *light)
+t_ray	make_shadow_ray(t_vector pos, t_vector normal, t_light *light)
 {
+	t_vector	to_light;
+	t_vector	dir;
+	t_vector	origin;
+	float		dist;
+
+	to_light = vec_sub(light->coordinates, pos);
+	dist = vec_len(to_light);
+	dir = vec_normalize(to_light);
+	origin = vec_add(pos, vec_scalar_mult(normal, RAY_DIST_MIN));
+	return (ray_init(origin, dir, dist));
+}
+
+int	is_in_shadow(t_inter *hit, t_data *data)
+{
+	t_ray		shadow_ray;
 	t_vector	pos;
 	t_vector	normal;
-	t_vector	light_dir;
-	t_vector	base;
-	float		diff;
+	t_inter		blocker;
 
 	pos = inter_pos(hit);
 	normal = shape_normal(hit->shape, pos);
-	light_dir = vec_normalize(vec_sub(light->coordinates, pos));
-	diff = vec_dot(normal, light_dir);
-	if (diff < 0.0f)
-		diff = 0.0f;
-	base.x = hit->color.r * light->ratio * diff;
-	base.y = hit->color.g * light->ratio * diff;
-	base.z = hit->color.b * light->ratio * diff;
-	return (base);
+	shadow_ray = make_shadow_ray(pos, normal, data->light);
+	blocker = cast_ray(&shadow_ray, data->shapes);
+	return (inter_hit(&blocker));
 }
 
 int	shade_pixel(t_inter *hit, t_data *data)
@@ -54,9 +62,12 @@ int	shade_pixel(t_inter *hit, t_data *data)
 	if (!inter_hit(hit))
 		return (0x000000);
 	amb = convert_amb_vec(data->ambient);
-	diff = calc_diffuse(hit, data->light);
+	if (is_in_shadow(hit, data))
+		diff = (t_vector){0.0f, 0.0f, 0.0f};
+	else
+		diff = calc_diffuse(hit, data->light);
 	col = vec_add(amb, diff);
-	col = vec_clamp(col, 0.0f, 255.0f); 
+	col = vec_clamp(col, 0.0f, 255.0f);
 	gamma = apply_gamma_correction(col);
 	pixel = vector_to_int(gamma);
 	return (pixel);

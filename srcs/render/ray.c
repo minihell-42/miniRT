@@ -40,5 +40,6 @@ t_ray	generate_ray(t_camera *cam, t_viewpt *vp, int x, int y)
 	ray = ray_init_default(cam->coordinates, cam->normalized);
 	ray.direction = vec_add(vec_add(vec_scalar_mult(cam->right, vp->u),
 				vec_scalar_mult(cam->up, vp->v)), cam->normalized);
+	ray.direction = vec_normalize(ray.direction);
 	return (ray);
 }
