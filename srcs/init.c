@@ -23,7 +23,7 @@ static void	app_init(t_data *data)
 		exit_free_data("Unable to create mlx window", data);
 	data->app->image->img_ptr = mlx_new_image(data->app->mlx_connection, WIDTH, HEIGHT);
 	if (!data->app->image->img_ptr)
-		exit_free_data("Unable to create mlx window", data);
+		exit_free_data("Unable to create mlx image", data);
 	data->app->image->buffer = mlx_get_data_addr(data->app->image->img_ptr,
 											&data->app->image->bpp,
 											&data->app->image->length,
