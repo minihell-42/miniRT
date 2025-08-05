@@ -38,6 +38,9 @@
 // α exponent for Blinn–Phong
 # define SHININESS 50.0f
 
+// Helps avoid rebouncing on the same spot when generating the shadow
+# define SHADOW_BIAS 1e-3f
+
 // Default screen size
 # define HEIGHT 700
 # define WIDTH 700
@@ -93,6 +96,7 @@ typedef struct s_light
 {
 	float				ratio;
 	t_vector			coordinates;
+	t_vector			specular;
 	int					is_set;
 }						t_light;
 

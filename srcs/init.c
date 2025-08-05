@@ -46,6 +46,7 @@ static void	data_init(t_data *data)
 	data->ambient->is_set = 0;
 	data->camera->is_set = 0;
 	data->light->is_set = 0;
+	data->light->specular = (t_vector){255.0f, 255.0f, 255.0f};
 }
 
 void	init_minirt(char *file)

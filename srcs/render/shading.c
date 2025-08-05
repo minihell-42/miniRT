@@ -33,7 +33,7 @@ t_ray	make_shadow_ray(t_vector pos, t_vector normal, t_light *light)
 	to_light = vec_sub(light->coordinates, pos);
 	dist = vec_len(to_light);
 	dir = vec_normalize(to_light);
-	origin = vec_add(pos, vec_scalar_mult(normal, RAY_DIST_MIN));
+	origin = vec_add(pos, vec_scalar_mult(normal, SHADOW_BIAS));
 	return (ray_init(origin, dir, dist));
 }
 
@@ -48,60 +48,63 @@ int	is_in_shadow(t_inter *hit, t_data *data)
 	normal = shape_normal(hit->shape, pos);
 	shadow_ray = make_shadow_ray(pos, normal, data->light);
 	blocker = cast_ray(&shadow_ray, data->shapes);
-	return (inter_hit(&blocker));
+	if (blocker.shape && blocker.shape != hit->shape
+		&& blocker.dist < shadow_ray.dist_max)
+		return (1);
+	return (0);
 }
 
-// halfway vector
-// specular = ks * spec_factor
-t_vector	calc_specular(t_material mat, t_light *light, t_vector view_dir,
-		t_vector hit_normal, t_vector hit_point)
+void	calc_specular(t_inter *hit, t_light *light, t_vector view_dir)
 {
 	t_vector	L;
-	t_vector	H;
-	float		ndh;
-	float		spec_factor;
+	t_vector	R;
+	t_vector	pos;
+	t_vector	normal;
+	float		RdotV;
+	float		phong_factor;
 
-	L = vec_normalize(vec_sub(light->coordinates, hit_point));
-	H = vec_normalize(vec_add(L, view_dir));
-	ndh = fmaxf(vec_dot(hit_normal, H), 0.0f);
-	spec_factor = powf(ndh, mat.shininess) * light->ratio;
-	return (vec_scalar_mult(mat.specular, spec_factor));
+	pos = inter_pos(hit);
+	normal = shape_normal(hit->shape, pos);
+	L = vec_normalize(vec_sub(light->coordinates, pos));
+	// perfect reflection of -L about N
+	R = vec_reflect(vec_negate(L), normal);
+	// cos angle between R and V
+	RdotV = fmaxf(vec_dot(R, view_dir), 0.0f);
+	// phong factor
+	phong_factor = powf(RdotV, hit->shape->material.shininess) * light->ratio;
+	light->specular.x *= hit->shape->material.specular.x * phong_factor;
+	light->specular.y *= hit->shape->material.specular.y * phong_factor;
+	light->specular.z *= hit->shape->material.specular.z * phong_factor;
 }
 
 int	shade_pixel(t_inter *hit, t_data *data)
 {
-	t_vector	diff;
-	t_vector	col;
-	t_vector	gamma;
-	t_vector	amb;
-	t_vector	spec;
-	t_vector	view;
-	t_vector	pos;
-	t_vector	normal;
-	t_material	mat;
-	int			pixel;
+	t_vector diff;
+	t_vector col;
+	t_vector gamma;
+	t_vector amb;
+	t_vector view;
+	t_vector pos;
+	t_vector normal;
+	int pixel;
 
 	if (!inter_hit(hit))
 		return (0x000000);
 	pos = inter_pos(hit);
 	normal = shape_normal(hit->shape, pos);
-	mat = hit->shape->material;
 	amb = convert_col_vec(data->ambient->color);
 	amb = vec_scalar_mult(amb, data->ambient->ratio);
+	amb = vec_mult(amb, hit->shape->material.diffuse);
 	view = vec_negate(hit->ray.direction);
 	if (is_in_shadow(hit, data))
-	{
 		diff = (t_vector){0.0f, 0.0f, 0.0f};
-		spec = (t_vector){0.0f, 0.0f, 0.0f};
-	}
 	else
 	{
 		diff = calc_diffuse(hit, data->light);
-		spec = calc_specular(mat, data->light, view, normal, pos);
+		calc_specular(hit, data->light, view);
 	}
-	amb = vec_mult(amb, mat.diffuse);
-	diff = vec_mult(diff, mat.diffuse);
-	col = vec_add(vec_add(amb, diff), spec);
+	diff = vec_mult(diff, hit->shape->material.diffuse);
+	col = vec_add(vec_add(amb, diff), data->light->specular);
 	col = vec_clamp(col, 0.0f, 255.0f);
 	gamma = apply_gamma_correction(col);
 	pixel = vector_to_int(gamma);
