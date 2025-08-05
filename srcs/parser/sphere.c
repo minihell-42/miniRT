@@ -12,20 +12,20 @@
 
 #include "miniRT.h"
 
-int	create_sphere(t_data *data, t_vector center, float radius, t_color color)
+static int	create_sphere(t_data *data, t_sphere *sphere, t_color color)
 {
-	t_sphere	*sphere;
+	t_sphere	*new_sphere;
 	t_shape		*shape;
 
-	sphere = malloc(sizeof(t_sphere));
-	if (!sphere)
+	new_sphere = malloc(sizeof(t_sphere));
+	if (!new_sphere)
 		return (0);
-	sphere->center = center;
-	sphere->radius = radius;
-	shape = create_node(SPHERE, sphere, data);
+	new_sphere->center = sphere->center;
+	new_sphere->radius = sphere->radius;
+	shape = create_node(SPHERE, new_sphere, data);
 	if (!shape)
 	{
-		free(sphere);
+		free(new_sphere);
 		return (0);
 	}
 	shape->color = color;
@@ -37,8 +37,7 @@ int	create_sphere(t_data *data, t_vector center, float radius, t_color color)
 void	parse_sphere(char *line, t_data *data)
 {
 	char		**tokens;
-	t_vector	center;
-	float		radius;
+	t_sphere	sphere;
 	t_color		color;
 
 	tokens = ft_split(line, '\t');
@@ -46,13 +45,13 @@ void	parse_sphere(char *line, t_data *data)
 		exit_free_data("Memory allocation failed", data);
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3])
 		exit_free_all("Invalid sphere line format", data, tokens);
-	if (!validate_coordinates(tokens[1], &center))
+	if (!validate_coordinates(tokens[1], &sphere.center))
 		exit_free_all("Invalid coordinates format for sphere", data, tokens);
-	if (!validate_positive_float(tokens[2], &radius))
+	if (!validate_positive_float(tokens[2], &sphere.radius))
 		exit_free_all("Sphere radius must be positive", data, tokens);
 	if (!validate_color(tokens[3], &color))
 		exit_free_all("Invalid color format for sphere", data, tokens);
-	if (!create_sphere(data, center, radius, color))
+	if (!create_sphere(data, &sphere, color))
 		exit_free_all("Failed to create sphere", data, tokens);
 	free_array(tokens);
 }

@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # include "../libft/include/libft.h"
-# include "../minilibx/mlx.h"
+# include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -135,7 +135,7 @@ typedef struct s_shape
 	t_type				shape_type;
 	void				*object;
 	t_color				color;
-	t_material		material;
+	t_material			material;
 	t_shape				*next;
 }						t_shape;
 
@@ -197,10 +197,9 @@ typedef struct s_data
 
 // INIT
 void					init_minirt(char *file);
-void					data_init(t_data *data);
 
 // READ & PARSE
-char					*read_file(char *file, t_data *data);
+void					read_file(char *file, t_data *data);
 void					parse_ambient(char *line, t_data *data);
 void					parse_light(char *line, t_data *data);
 void					parse_camera(char *line, t_data *data);
@@ -229,18 +228,30 @@ int						create_plane(t_data *data, t_vector point,
 							t_vector normal, t_color color);
 int						create_cylinder(t_data *data, t_cylinder *cylinder,
 							t_color color);
-t_material		build_material(t_color color);
+t_material				build_material(t_color color);
 
 // ERRORS
 void					exit_message(char *msg);
 void					exit_free_array(char *msg, char **array);
 void					exit_free_data(char *msg, t_data *data);
+void					exit_free_all(char *msg, t_data *data, char **array);
 
 // FREE
 void					free_array(char **array);
 void					free_shapes(t_shape *shapes);
 void					free_data(t_data *data);
-void					exit_free_all(char *msg, t_data *data, char **array);
+
+// EVENTS
+void					setup_events(t_data *data);
+int						on_close(t_data *data);
+int						on_key_press(int key, t_data *data);
+int						on_mouse_scroll(int button, int x, int y, t_data *data);
+int						on_mouse_exit(t_data *data);
+void					translate_camera(int key, t_data *data);
+void					translate_light(int key, t_data *data);
+void					translate_object(int key, t_data *data);
+void					resize_object(int key, t_data *data);
+void					rotate_object(int key, t_data *data);
 
 // DEBUG
 void					print_data(t_data *data);
