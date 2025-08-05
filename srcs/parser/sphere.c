@@ -29,6 +29,7 @@ int	create_sphere(t_data *data, t_vector center, float radius, t_color color)
 		return (0);
 	}
 	shape->color = color;
+	shape->material = build_material(color);
 	append_node(data, shape);
 	return (1);
 }

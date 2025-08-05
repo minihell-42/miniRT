@@ -31,6 +31,7 @@ int	create_cylinder(t_data *data, t_cylinder *cylinder, t_color color)
 		return (0);
 	}
 	shape->color = color;
+	shape->material = build_material(color);
 	append_node(data, shape);
 	return (1);
 }

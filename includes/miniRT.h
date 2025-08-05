@@ -35,6 +35,9 @@
 // 'Infinite' distance, used as a default value
 # define RAY_DIST_MAX 1.0e30f
 
+// α exponent for Blinn–Phong
+# define SHININESS 50.0f
+
 // Default screen size
 # define HEIGHT 700
 # define WIDTH 700
@@ -118,6 +121,13 @@ typedef enum s_type
 	CYLINDER
 }						t_type;
 
+typedef struct s_material
+{
+	t_vector			diffuse;
+	t_vector			specular;
+	float				shininess;
+}						t_material;
+
 typedef struct s_shape	t_shape;
 
 typedef struct s_shape
@@ -125,6 +135,7 @@ typedef struct s_shape
 	t_type				shape_type;
 	void				*object;
 	t_color				color;
+	t_material		material;
 	t_shape				*next;
 }						t_shape;
 
@@ -218,6 +229,7 @@ int						create_plane(t_data *data, t_vector point,
 							t_vector normal, t_color color);
 int						create_cylinder(t_data *data, t_cylinder *cylinder,
 							t_color color);
+t_material		build_material(t_color color);
 
 // ERRORS
 void					exit_message(char *msg);
@@ -230,4 +242,6 @@ void					free_shapes(t_shape *shapes);
 void					free_data(t_data *data);
 void					exit_free_all(char *msg, t_data *data, char **array);
 
+// DEBUG
+void					print_data(t_data *data);
 #endif
