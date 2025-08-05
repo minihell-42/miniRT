@@ -12,7 +12,25 @@
 
 #include "miniRT.h"
 
-void	data_init(t_data *data)
+static void	app_init(t_data *data)
+{
+	data->app->mlx_connection = mlx_init();
+	if (!data->app->mlx_connection)
+		exit_free_data("Unable to create mlx connection", data);
+	data->app->mlx_window = mlx_new_window(data->app->mlx_connection, WIDTH, HEIGHT,
+			"MiniRT");
+	if (!data->app->mlx_window)
+		exit_free_data("Unable to create mlx window", data);
+	data->app->image->img_ptr = mlx_new_image(data->app->mlx_connection, WIDTH, HEIGHT);
+	if (!data->app->image->img_ptr)
+		exit_free_data("Unable to create mlx image", data);
+	data->app->image->buffer = mlx_get_data_addr(data->app->image->img_ptr,
+											&data->app->image->bpp,
+											&data->app->image->length,
+											&data->app->image->endian);
+}
+
+static void	data_init(t_data *data)
 {
 	data->app = malloc(sizeof(t_app));
 	data->app->image = malloc(sizeof(t_image));
@@ -22,6 +40,7 @@ void	data_init(t_data *data)
 	if (!data->app || !data->ambient || !data->light || !data->camera
 		|| !data->app->image)
 		exit_message("Allocation failure");
+	app_init(data);
 	data->shapes = NULL;
 	data->shape_count = 0;
 	data->ambient->is_set = 0;
@@ -38,7 +57,6 @@ void	init_minirt(char *file)
 		exit_message("Allocation failure");
 	data_init(data);
 	read_file(file, data);
-	// AQUI IRIA EL RESTO 
-	
-	free_data(data);
+	setup_events(data);
+	mlx_loop(data->app->mlx_connection);
 }
