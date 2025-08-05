@@ -25,14 +25,14 @@ SRC = $(SRC_DIR)/main.c $(SRC_DIR)/errors.c $(SRC_DIR)/init.c \
 			$(SRC_DIR)/parser/validation.c $(SRC_DIR)/parser/shape_node.c \
 			$(SRC_DIR)/free.c $(SRC_DIR)/parser/utils.c \
 			$(SRC_DIR)/events/setup.c $(SRC_DIR)/events/events.c $(SRC_DIR)/events/translation.c \
-		$(SRC_DIR)/events/resize.c  $(SRC_DIR)/events/rotation.c \
+			$(SRC_DIR)/events/resize.c  $(SRC_DIR)/events/rotation.c \
 			$(SRC_DIR)/render/vec_math.c $(SRC_DIR)/render/vec_utils.c \
 			$(SRC_DIR)/render/ray.c $(SRC_DIR)/render/intersection.c \
 			$(SRC_DIR)/render/shapes.c $(SRC_DIR)/render/plane.c \
 			$(SRC_DIR)/render/sphere.c $(SRC_DIR)/render/cylinder.c \
 			$(SRC_DIR)/render/color.c $(SRC_DIR)/render/render.c \
-			$(SRC_DIR)/render/camera.c $(SRC_DIR)/render/events.c \
-			$(SRC_DIR)/render/light.c $(SRC_DIR)/render/shading.c \
+			$(SRC_DIR)/render/camera.c $(SRC_DIR)/render/shading.c \
+			$(SRC_DIR)/render/light.c \
 
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 

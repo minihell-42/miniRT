@@ -222,12 +222,6 @@ int						validate_positive_float(char *str, float *value);
 // SHAPE CREATION
 t_shape					*create_node(t_type type, void *shape, t_data *data);
 void					append_node(t_data *data, t_shape *new_shape);
-int						create_sphere(t_data *data, t_vector center,
-							float radius, t_color color);
-int						create_plane(t_data *data, t_vector point,
-							t_vector normal, t_color color);
-int						create_cylinder(t_data *data, t_cylinder *cylinder,
-							t_color color);
 t_material				build_material(t_color color);
 
 // ERRORS
