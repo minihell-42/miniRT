@@ -30,11 +30,16 @@ int	on_mouse_scroll(int button, int x, int y, t_data *data)
 {
 	(void)x;
 	(void)y;
-	data->camera->fov /= M_PI / 180.0f;
 	if (button == Button4)
+	{
 		data->camera->fov -= 10;
+		data->camera->fov /= M_PI / 180.0f;
+	}
 	else if (button == Button5)
+	{
 		data->camera->fov += 10;
+		data->camera->fov /= M_PI / 180.0f;
+	}
 	return (0);
 }
 
