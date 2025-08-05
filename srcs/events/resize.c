@@ -4,8 +4,10 @@ static void	resize_cylinder(int key, t_cylinder *cylinder, float size)
 {
 	if (key == XK_1)
 	{
-		cylinder->radius -= size;
-		cylinder->height -= size;
+		if (cylinder->radius - size > 0)
+			cylinder->radius -= size;
+		if (cylinder->height - size > 0)
+			cylinder->height -= size;
 	}
 	else if (key == XK_2)
 	{
