@@ -20,14 +20,14 @@ void	ambient_computation(t_ambient *amb)
 	amb->color.b *= amb->ratio;
 }
 
-t_vector	convert_amb_vec(t_ambient *amb)
+t_vector	convert_col_vec(t_color	color)
 {
-	t_vector	amb_vec;
+	t_vector	col_vec;
 
-	amb_vec.x = (float)amb->color.r;
-	amb_vec.y = (float)amb->color.g;
-	amb_vec.z = (float)amb->color.b;
-	return (amb_vec);
+	col_vec.x = (float)color.r;
+	col_vec.y = (float)color.g;
+	col_vec.z = (float)color.b;
+	return (col_vec);
 }
 
 t_vector	calc_diffuse(t_inter *hit, t_light *light)

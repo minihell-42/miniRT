@@ -16,8 +16,9 @@ int	init_mlx(t_app *app)
 {
 	app->mlx_connection = mlx_init();
 	if (app->mlx_connection == NULL)
-		return(0);
-	app->mlx_window = mlx_new_window(app->mlx_connection, WIDTH, HEIGHT, "MiniRT");
+		return (0);
+	app->mlx_window = mlx_new_window(app->mlx_connection, WIDTH, HEIGHT,
+			"MiniRT");
 	if (app->mlx_window == NULL)
 	{
 		mlx_destroy_display(app->mlx_connection);
@@ -27,8 +28,8 @@ int	init_mlx(t_app *app)
 	app->image->img_ptr = mlx_new_image(app->mlx_connection, WIDTH, HEIGHT);
 	if (app->image->img_ptr == NULL)
 		return (0);
-	app->image->buffer = mlx_get_data_addr(app->image->img_ptr, &app->image->bpp,
-			&app->image->length, &app->image->endian);
+	app->image->buffer = mlx_get_data_addr(app->image->img_ptr,
+			&app->image->bpp, &app->image->length, &app->image->endian);
 	return (1);
 }
 

@@ -51,22 +51,57 @@ int	is_in_shadow(t_inter *hit, t_data *data)
 	return (inter_hit(&blocker));
 }
 
+// halfway vector
+// specular = ks * spec_factor
+t_vector	calc_specular(t_material mat, t_light *light, t_vector view_dir,
+		t_vector hit_normal, t_vector hit_point)
+{
+	t_vector	L;
+	t_vector	H;
+	float		ndh;
+	float		spec_factor;
+
+	L = vec_normalize(vec_sub(light->coordinates, hit_point));
+	H = vec_normalize(vec_add(L, view_dir));
+	ndh = fmaxf(vec_dot(hit_normal, H), 0.0f);
+	spec_factor = powf(ndh, mat.shininess) * light->ratio;
+	return (vec_scalar_mult(mat.specular, spec_factor));
+}
+
 int	shade_pixel(t_inter *hit, t_data *data)
 {
 	t_vector	diff;
 	t_vector	col;
 	t_vector	gamma;
 	t_vector	amb;
+	t_vector	spec;
+	t_vector	view;
+	t_vector	pos;
+	t_vector	normal;
+	t_material	mat;
 	int			pixel;
 
 	if (!inter_hit(hit))
 		return (0x000000);
-	amb = convert_amb_vec(data->ambient);
+	pos = inter_pos(hit);
+	normal = shape_normal(hit->shape, pos);
+	mat = hit->shape->material;
+	amb = convert_col_vec(data->ambient->color);
+	amb = vec_scalar_mult(amb, data->ambient->ratio);
+	view = vec_negate(hit->ray.direction);
 	if (is_in_shadow(hit, data))
+	{
 		diff = (t_vector){0.0f, 0.0f, 0.0f};
+		spec = (t_vector){0.0f, 0.0f, 0.0f};
+	}
 	else
+	{
 		diff = calc_diffuse(hit, data->light);
-	col = vec_add(amb, diff);
+		spec = calc_specular(mat, data->light, view, normal, pos);
+	}
+	amb = vec_mult(amb, mat.diffuse);
+	diff = vec_mult(diff, mat.diffuse);
+	col = vec_add(vec_add(amb, diff), spec);
 	col = vec_clamp(col, 0.0f, 255.0f);
 	gamma = apply_gamma_correction(col);
 	pixel = vector_to_int(gamma);
