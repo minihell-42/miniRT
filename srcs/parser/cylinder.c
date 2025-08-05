@@ -22,7 +22,7 @@ int	create_cylinder(t_data *data, t_cylinder *cylinder, t_color color)
 		return (0);
 	new_cylinder->center = cylinder->center;
 	new_cylinder->normal = cylinder->normal;
-	new_cylinder->radius = cylinder->radius;
+	new_cylinder->radius = cylinder->radius / 2.0f;
 	new_cylinder->height = cylinder->height;
 	shape = create_node(CYLINDER, new_cylinder, data);
 	if (!shape)
