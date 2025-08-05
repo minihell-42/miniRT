@@ -23,6 +23,7 @@ float		vec_dot(t_vector v1, t_vector v2);
 t_vector	vec_cross(t_vector v1, t_vector v2);
 t_vector	vec_normalize(t_vector v);
 t_vector	vec_negate(t_vector v);
+t_vector  vec_reflect(t_vector v1, t_vector v2);
 
 // VECTOR MATH
 t_vector	vec_add(t_vector v1, t_vector v2);
@@ -72,9 +73,5 @@ void		normalize_coord(t_viewpt *vp, float x, float y);
 void		ambient_computation(t_ambient *amb);
 t_vector	convert_col_vec(t_color col);
 t_vector	calc_diffuse(t_inter *hit, t_light *light);
-
-// EVENTS
-int			handle_key(int keysym, t_app *app);
-int			free_data_wrapper(void *param);
 
 #endif
