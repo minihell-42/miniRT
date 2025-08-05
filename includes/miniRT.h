@@ -216,6 +216,7 @@ void					setup_events(t_data *data);
 int						on_close(t_data *data);
 int						on_key_press(int key, t_data *data);
 int						on_mouse_scroll(int button, int x, int y, t_data *data);
+int						on_mouse_exit(t_data *data);
 void					translate_camera(int key, t_data *data);
 void					translate_light(int key, t_data *data);
 void					translate_object(int key, t_data *data);

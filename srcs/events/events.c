@@ -30,11 +30,16 @@ int	on_mouse_scroll(int button, int x, int y, t_data *data)
 {
 	(void)x;
 	(void)y;
-
 	data->camera->fov /= 3.14159265358979323846 / 180.0f;
 	if (button == Button4)
 		data->camera->fov -= 10;
 	else if (button == Button5)
 		data->camera->fov += 10;
 	return (0);
+}
+
+int	on_mouse_exit(t_data *data)
+{
+	free_data(data);
+	exit(EXIT_SUCCESS);
 }
