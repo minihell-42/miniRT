@@ -17,17 +17,17 @@ static void	app_init(t_data *data)
 	data->app->mlx_connection = mlx_init();
 	if (!data->app->mlx_connection)
 		exit_free_data("Unable to create mlx connection", data);
-	data->app->mlx_window = mlx_new_window(data->app->mlx_connection, WIDTH, HEIGHT,
-			"MiniRT");
+	data->app->mlx_window = mlx_new_window(data->app->mlx_connection, WIDTH,
+			HEIGHT, "MiniRT");
 	if (!data->app->mlx_window)
 		exit_free_data("Unable to create mlx window", data);
-	data->app->image->img_ptr = mlx_new_image(data->app->mlx_connection, WIDTH, HEIGHT);
+	data->app->image->img_ptr = mlx_new_image(data->app->mlx_connection, WIDTH,
+			HEIGHT);
 	if (!data->app->image->img_ptr)
 		exit_free_data("Unable to create mlx image", data);
 	data->app->image->buffer = mlx_get_data_addr(data->app->image->img_ptr,
-											&data->app->image->bpp,
-											&data->app->image->length,
-											&data->app->image->endian);
+			&data->app->image->bpp, &data->app->image->length,
+			&data->app->image->endian);
 }
 
 static void	data_init(t_data *data)
@@ -58,6 +58,8 @@ void	init_minirt(char *file)
 	data_init(data);
 	read_file(file, data);
 	render(data);
+	printf("----- AFTER RENDERING --------\n");
+	print_data(data);
 	setup_events(data);
 	mlx_loop(data->app->mlx_connection);
 }

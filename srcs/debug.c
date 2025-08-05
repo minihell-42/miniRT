@@ -1,10 +1,18 @@
-/*
+
 #include "miniRT.h"
 #include <stdio.h>
 
 static void	print_vector(char *name, t_vector v)
 {
 	printf("    %s: (%f, %f, %f)\n", name, v.x, v.y, v.z);
+}
+
+static void	print_material(t_material material)
+{
+	printf("Material:\n");
+	print_vector("difusse", material.diffuse);
+	print_vector("specular", material.specular);
+	printf("  shininess: %f\n", material.shininess);
 }
 
 static void	print_color(char *name, t_color c)
@@ -95,7 +103,8 @@ static void	print_shapes(const t_shape *sh)
 			break ;
 		}
 		}
-		print_color("  material color", sh->color);
+		print_color("  color", sh->color);
+		print_material(sh->material);
 		sh = sh->next;
 	}
 	if (i == 0)
@@ -119,4 +128,3 @@ void	print_data(t_data *data)
 	printf("Parsed shapes (count = %d):\n", data->shape_count);
 	print_shapes(data->shapes);
 }
-*/

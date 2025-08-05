@@ -33,6 +33,7 @@ SRC = $(SRC_DIR)/main.c $(SRC_DIR)/errors.c $(SRC_DIR)/init.c \
 			$(SRC_DIR)/render/color.c $(SRC_DIR)/render/render.c \
 			$(SRC_DIR)/render/camera.c $(SRC_DIR)/render/shading.c \
 			$(SRC_DIR)/render/light.c \
+			$(SRC_DIR)/debug.c
 
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 

@@ -40,6 +40,8 @@ void	render(t_data *data)
 	define_viewpt(&data->camera->view_port, data->camera->fov);
 	build_orth_basis(data->camera);
 	ambient_computation(data->ambient);
+	printf("----- BEFORE RENDERING --------\n");
+	print_data(data);
 	y = -1;
 	while (++y < HEIGHT)
 	{
