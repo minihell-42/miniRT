@@ -17,9 +17,9 @@ void	translate_camera(int key, t_data *data)
 
 void	translate_light(int key, t_data *data)
 {
-	int move_amount;
+	float move_amount;
 
-	move_amount = 1;
+	move_amount = 1.0;
 	if (key == XK_t)
 		data->light->coordinates.y += move_amount;
 	if (key == XK_f)
