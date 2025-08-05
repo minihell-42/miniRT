@@ -20,7 +20,7 @@ static void	app_init(t_data *data)
 	data->app->mlx_window = mlx_new_window(data->app->mlx_connection, WIDTH, HEIGHT,
 			"MiniRT");
 	if (!data->app->mlx_window)
-		exit_free_data("Unable to create mlx connection", data);
+		exit_free_data("Unable to create mlx window", data);
 	data->app->image->img_ptr = mlx_new_image(data->app->mlx_connection, WIDTH, HEIGHT);
 	if (!data->app->image->img_ptr)
 		exit_free_data("Unable to create mlx window", data);
