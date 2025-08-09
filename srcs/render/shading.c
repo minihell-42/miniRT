@@ -84,14 +84,10 @@ int	shade_pixel(t_inter *hit, t_data *data)
 	t_vector gamma;
 	t_vector amb;
 	t_vector view;
-	t_vector pos;
-	t_vector normal;
 	int pixel;
 
 	if (!inter_hit(hit))
 		return (0x000000);
-	pos = inter_pos(hit);
-	normal = shape_normal(hit->shape, pos);
 	amb = convert_col_vec(data->ambient->color);
 	amb = vec_scalar_mult(amb, data->ambient->ratio);
 	amb = vec_mult(amb, hit->shape->material.diffuse);
