@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include "render.h"
 
 int	create_cylinder(t_data *data, t_cylinder *cylinder, t_color color)
 {
@@ -50,8 +51,9 @@ void	parse_cylinder(char *line, t_data *data)
 		exit_free_all("Invalid cylinder line format", data, tokens);
 	if (!validate_coordinates(tokens[1], &cylinder.center))
 		exit_free_all("Invalid coordinates format for cylinder", data, tokens);
-	if (!validate_coordinates(tokens[2], &cylinder.normal))
+    if (!validate_coordinates(tokens[2], &cylinder.normal))
 		exit_free_all("Invalid normalized vector", data, tokens);
+    cylinder.normal = vec_normalize(cylinder.normal);
 	if (!validate_positive_float(tokens[3], &cylinder.radius))
 		exit_free_all("Cylinder radius must be positive", data, tokens);
 	if (!validate_positive_float(tokens[4], &cylinder.height))

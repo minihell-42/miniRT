@@ -4,10 +4,10 @@ static void	resize_cylinder(int key, t_cylinder *cylinder, float size)
 {
 	if (key == XK_1)
 	{
-		if (cylinder->radius - size > 0)
-			cylinder->radius -= size;
-		if (cylinder->height - size > 0)
-			cylinder->height -= size;
+        if (cylinder->radius - size > RAY_DIST_MIN)
+            cylinder->radius -= size;
+        if (cylinder->height - size > RAY_DIST_MIN)
+            cylinder->height -= size;
 	}
 	else if (key == XK_2)
 	{
@@ -19,7 +19,7 @@ static void	resize_cylinder(int key, t_cylinder *cylinder, float size)
 static void	resize_sphere(int key, t_sphere *sphere, float size)
 {
 	if (key == XK_1)
-		sphere->radius -= size;
+        sphere->radius = fmaxf(sphere->radius - size, RAY_DIST_MIN);
 	else if (key == XK_2)
 		sphere->radius += size;
 }

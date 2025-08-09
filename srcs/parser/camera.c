@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include "render.h"
 
 void	parse_camera(char *line, t_data *data)
 {
@@ -32,7 +33,7 @@ void	parse_camera(char *line, t_data *data)
 	if (!validate_fov(tokens[3], &fov))
 		exit_free_all("Camera FOV must be between 0 and 180", data, tokens);
 	data->camera->coordinates = camera.coordinates;
-	data->camera->normalized = camera.normalized;
+	data->camera->normalized = vec_normalize(camera.normalized);
 	data->camera->fov = fov;
 	data->camera->is_set = 1;
 	free_array(tokens);
