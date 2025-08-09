@@ -56,22 +56,19 @@ int	is_in_shadow(t_inter *hit, t_data *data)
 
 void	calc_specular(t_inter *hit, t_light *light, t_vector view_dir)
 {
-	t_vector	L;
-	t_vector	R;
+	t_vector	light_dir;
+	t_vector	reflection_dir;
 	t_vector	pos;
-	t_vector	normal;
-	float		RdotV;
+	float		reflection_dot_view;
 	float		phong_factor;
 
 	pos = inter_pos(hit);
-	normal = shape_normal(hit->shape, pos);
-	L = vec_normalize(vec_sub(light->coordinates, pos));
-	// perfect reflection of -L about N
-	R = vec_reflect(vec_negate(L), normal);
-	// cos angle between R and V
-	RdotV = fmaxf(vec_dot(R, view_dir), 0.0f);
-	// phong factor
-	phong_factor = powf(RdotV, hit->shape->material.shininess) * light->ratio;
+	light_dir = vec_normalize(vec_sub(light->coordinates, pos));
+	reflection_dir = vec_reflect(vec_negate(light_dir),
+			shape_normal(hit->shape, pos));
+	reflection_dot_view = fmaxf(vec_dot(reflection_dir, view_dir), 0.0f);
+	phong_factor = powf(reflection_dot_view, hit->shape->material.shininess)
+		* light->ratio;
 	light->specular.x *= hit->shape->material.specular.x * phong_factor;
 	light->specular.y *= hit->shape->material.specular.y * phong_factor;
 	light->specular.z *= hit->shape->material.specular.z * phong_factor;
@@ -79,30 +76,15 @@ void	calc_specular(t_inter *hit, t_light *light, t_vector view_dir)
 
 int	shade_pixel(t_inter *hit, t_data *data)
 {
-	t_vector diff;
-	t_vector col;
-	t_vector gamma;
-	t_vector amb;
-	t_vector view;
-	int pixel;
+	t_vector	final_color;
+	t_vector	gamma_corrected;
+	int			pixel_color;
 
 	if (!inter_hit(hit))
 		return (0x000000);
-	amb = convert_col_vec(data->ambient->color);
-	amb = vec_scalar_mult(amb, data->ambient->ratio);
-	amb = vec_mult(amb, hit->shape->material.diffuse);
-	view = vec_negate(hit->ray.direction);
-	if (is_in_shadow(hit, data))
-		diff = (t_vector){0.0f, 0.0f, 0.0f};
-	else
-	{
-		diff = calc_diffuse(hit, data->light);
-		calc_specular(hit, data->light, view);
-	}
-	diff = vec_mult(diff, hit->shape->material.diffuse);
-	col = vec_add(vec_add(amb, diff), data->light->specular);
-	col = vec_clamp(col, 0.0f, 255.0f);
-	gamma = apply_gamma_correction(col);
-	pixel = vector_to_int(gamma);
-	return (pixel);
+	final_color = calculate_lighting(hit, data);
+	final_color = vec_clamp(final_color, 0.0f, 255.0f);
+	gamma_corrected = apply_gamma_correction(final_color);
+	pixel_color = vector_to_int(gamma_corrected);
+	return (pixel_color);
 }

@@ -44,3 +44,27 @@ t_vector	calc_diffuse(t_inter *hit, t_light *light)
 	return ((t_vector){obj_col.x * kd.x * light->ratio * NdotL, obj_col.y * kd.y
 		* light->ratio * NdotL, obj_col.z * kd.z * light->ratio * NdotL});
 }
+
+t_vector	calculate_lighting(t_inter *hit, t_data *data)
+{
+	t_vector	diffuse_light;
+	t_vector	ambient_light;
+	t_vector	view_dir;
+	t_vector	total_light;
+
+	ambient_light = convert_col_vec(data->ambient->color);
+	ambient_light = vec_scalar_mult(ambient_light, data->ambient->ratio);
+	ambient_light = vec_mult(ambient_light, hit->shape->material.diffuse);
+	view_dir = vec_negate(hit->ray.direction);
+	if (is_in_shadow(hit, data))
+		diffuse_light = (t_vector){0.0f, 0.0f, 0.0f};
+	else
+	{
+		diffuse_light = calc_diffuse(hit, data->light);
+		calc_specular(hit, data->light, view_dir);
+	}
+	diffuse_light = vec_mult(diffuse_light, hit->shape->material.diffuse);
+	total_light = vec_add(vec_add(ambient_light, diffuse_light),
+			data->light->specular);
+	return (total_light);
+}
