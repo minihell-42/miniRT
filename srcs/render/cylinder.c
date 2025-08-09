@@ -71,22 +71,24 @@ static float	cylinder_side_intersection(t_ray *ray, t_cylinder *cy,
 // Main intersection just composes side and caps
 int	cylinder_intersection(t_inter *hit, t_cylinder *cy)
 {
-	t_vector	top_center;
-	float		dist_top;
-	float		dist_bott;
+	float		prev;
 	float		dist_side;
+	float		dist_bott;
+	float		dist_top;
+	t_vector	top_center;
 
+	prev = hit->dist;
 	dist_side = cylinder_side_intersection(&hit->ray, cy, hit->dist);
-	if (dist_side > 0.0f)
+	if (dist_side > RAY_DIST_MIN && dist_side < hit->dist)
 		hit->dist = dist_side;
 	dist_bott = cap_intersect(&hit->ray, cy, cy->center);
-	if (dist_bott > 0.0f && dist_bott < hit->dist)
+	if (dist_bott > RAY_DIST_MIN && dist_bott < hit->dist)
 		hit->dist = dist_bott;
 	top_center = vec_add(cy->center, vec_scalar_mult(cy->normal, cy->height));
 	dist_top = cap_intersect(&hit->ray, cy, top_center);
-	if (dist_top > 0.0f && dist_top < hit->dist)
+	if (dist_top > RAY_DIST_MIN && dist_top < hit->dist)
 		hit->dist = dist_top;
-	return (hit->dist < hit->ray.dist_max);
+	return (hit->dist < prev);
 }
 
 // oc -> origin-to-center
