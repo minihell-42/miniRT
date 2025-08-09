@@ -30,4 +30,5 @@ void	build_orth_basis(t_camera *cam)
 		world_up = (t_vector){1.0f, 0.0f, 0.0f};
 	cam->right = vec_normalize(vec_cross(cam->normalized, world_up));
 	cam->up = vec_cross(cam->right, cam->normalized);
+	vec_normalize(cam->up);
 }

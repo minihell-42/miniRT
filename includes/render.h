@@ -70,7 +70,6 @@ void		define_viewpt(t_viewpt *vp, float fov);
 void		normalize_coord(t_viewpt *vp, float x, float y);
 
 // AMBIENT LIGHT
-void		ambient_computation(t_ambient *amb);
 t_vector	convert_col_vec(t_color col);
 t_vector	calc_diffuse(t_inter *hit, t_light *light);
 
