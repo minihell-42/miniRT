@@ -21,7 +21,6 @@
 # include <math.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -35,6 +34,12 @@
 
 // 'Infinite' distance, used as a default value
 # define RAY_DIST_MAX 1.0e30f
+
+// α exponent for Blinn–Phong
+# define SHININESS 50.0f
+
+// Helps avoid rebouncing on the same spot when generating the shadow
+# define SHADOW_BIAS 1e-3f
 
 // Default screen size
 # define HEIGHT 700
@@ -64,11 +69,24 @@ typedef struct s_ambient
 	int					is_set;
 }						t_ambient;
 
+typedef struct s_viewpt
+{
+	float				aspect_ratio;
+	float				theta;
+	float				half_height;
+	float				half_width;
+	float				u;
+	float				v;
+}						t_viewpt;
+
 // Camera struct
 typedef struct s_camera
 {
 	t_vector			coordinates;
 	t_vector			normalized;
+	t_vector			up;
+	t_vector			right;
+	t_viewpt			view_port;
 	float				fov;
 	int					is_set;
 }						t_camera;
@@ -78,6 +96,7 @@ typedef struct s_light
 {
 	float				ratio;
 	t_vector			coordinates;
+	t_vector			specular;
 	int					is_set;
 }						t_light;
 
@@ -106,6 +125,13 @@ typedef enum s_type
 	CYLINDER
 }						t_type;
 
+typedef struct s_material
+{
+	t_vector			diffuse;
+	t_vector			specular;
+	float				shininess;
+}						t_material;
+
 typedef struct s_shape	t_shape;
 
 typedef struct s_shape
@@ -113,6 +139,7 @@ typedef struct s_shape
 	t_type				shape_type;
 	void				*object;
 	t_color				color;
+	t_material			material;
 	t_shape				*next;
 }						t_shape;
 
@@ -160,6 +187,8 @@ typedef struct s_inter
 	t_ray				ray;
 	t_shape				*shape;
 	t_color				color;
+	t_vector			normal;
+	t_vector			pos;
 }						t_inter;
 
 typedef struct s_data
@@ -189,7 +218,7 @@ char					*clean_line(char *line);
 int						parse_float(char *str, float *result);
 int						parse_int(char *str, int *result);
 
-//VALIDATIONS
+// VALIDATIONS
 int						validate_coordinates(char *str, t_vector *coords);
 int						validate_color(char *str, t_color *color);
 int						validate_ratio(char *str, float *ratio);
@@ -199,6 +228,7 @@ int						validate_positive_float(char *str, float *value);
 // SHAPE CREATION
 t_shape					*create_node(t_type type, void *shape, t_data *data);
 void					append_node(t_data *data, t_shape *new_shape);
+t_material				build_material(t_color color);
 
 // ERRORS
 void					exit_message(char *msg);
@@ -223,4 +253,6 @@ void					translate_object(int key, t_data *data);
 void					resize_object(int key, t_data *data);
 void					rotate_object(int key, t_data *data);
 
+// DEBUG
+void					print_data(t_data *data);
 #endif

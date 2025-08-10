@@ -9,30 +9,35 @@
 /*   Updated: 2025/07/28 11:44:09 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 // did_hit -> boolean to know if there is an intersection
-int	shape_intersect(t_inter *hit, const t_shape *shape)
+int	shape_intersect(t_inter *hit, t_shape *shape)
 {
-	int	did_hit;
+	float	before;
+	int		did_hit;
 
 	did_hit = 0;
+	before = hit->dist;
 	if (shape->shape_type == SPHERE)
 		did_hit = sphere_intersection(hit, (t_sphere *)shape->object);
 	else if (shape->shape_type == PLANE)
 		did_hit = plane_intersection(hit, (t_plane *)shape->object);
 	else
 		did_hit = cylinder_intersection(hit, (t_cylinder *)shape->object);
-	if (did_hit)
+	if (did_hit && hit->dist < before)
 	{
-		hit->shape = (t_shape *)shape;
+		hit->shape = shape;
 		hit->color = shape->color;
+		hit->pos = inter_pos(hit);
+		hit->normal = shape_normal(hit->shape, hit->pos);
+		return (1);
 	}
-	return (did_hit);
+	return (0);
 }
 
-t_vector	shape_normal(const t_shape *shape, t_vector hit_point)
+t_vector	shape_normal(t_shape *shape, t_vector hit_point)
 {
 	if (shape->shape_type == SPHERE)
 		return (sphere_normal((t_sphere *)shape->object, hit_point));
@@ -79,7 +84,7 @@ int	solve_quad(t_quadratic *quad)
 	return (quad->sol_count);
 }
 
-float	pick_quad_root(const t_quadratic *quad, float dist_min, float dist_max)
+float	pick_quad_root(t_quadratic *quad, float dist_min, float dist_max)
 {
 	if (quad->sol_count == 0)
 		return (-1.0f);

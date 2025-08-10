@@ -6,28 +6,28 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 13:56:42 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/29 18:21:30 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/08/10 10:48:21 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "miniRT.h"
+#include "render.h"
 
 static void	app_init(t_data *data)
 {
 	data->app->mlx_connection = mlx_init();
 	if (!data->app->mlx_connection)
 		exit_free_data("Unable to create mlx connection", data);
-	data->app->mlx_window = mlx_new_window(data->app->mlx_connection, WIDTH, HEIGHT,
-			"MiniRT");
+	data->app->mlx_window = mlx_new_window(data->app->mlx_connection, WIDTH,
+			HEIGHT, "MiniRT");
 	if (!data->app->mlx_window)
 		exit_free_data("Unable to create mlx window", data);
-	data->app->image->img_ptr = mlx_new_image(data->app->mlx_connection, WIDTH, HEIGHT);
+	data->app->image->img_ptr = mlx_new_image(data->app->mlx_connection, WIDTH,
+			HEIGHT);
 	if (!data->app->image->img_ptr)
 		exit_free_data("Unable to create mlx image", data);
 	data->app->image->buffer = mlx_get_data_addr(data->app->image->img_ptr,
-											&data->app->image->bpp,
-											&data->app->image->length,
-											&data->app->image->endian);
+			&data->app->image->bpp, &data->app->image->length,
+			&data->app->image->endian);
 }
 
 static void	data_init(t_data *data)
@@ -46,17 +46,19 @@ static void	data_init(t_data *data)
 	data->ambient->is_set = 0;
 	data->camera->is_set = 0;
 	data->light->is_set = 0;
+	data->light->specular = (t_vector){255.0f, 255.0f, 255.0f};
 }
 
 void	init_minirt(char *file)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
 		exit_message("Allocation failure");
 	data_init(data);
 	read_file(file, data);
+	render(data);
 	setup_events(data);
 	mlx_loop(data->app->mlx_connection);
 }

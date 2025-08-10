@@ -9,12 +9,12 @@
 /*   Updated: 2025/07/28 11:44:29 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 // oc -> origin-to-center offset vector
 // cand_dist -> candidate distance == not the final distance, needs validation
-int	sphere_intersection(t_inter *hit, const t_sphere *sp)
+int	sphere_intersection(t_inter *hit, t_sphere *sp)
 {
 	t_vector	oc;
 	t_quadratic	quad;
@@ -33,7 +33,7 @@ int	sphere_intersection(t_inter *hit, const t_sphere *sp)
 	return (1);
 }
 
-t_vector	sphere_normal(const t_sphere *sp, t_vector hit_point)
+t_vector	sphere_normal(t_sphere *sp, t_vector hit_point)
 {
 	return (vec_normalize(vec_sub(hit_point, sp->center)));
 }

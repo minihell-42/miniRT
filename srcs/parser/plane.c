@@ -29,6 +29,7 @@ static int	create_plane(t_data *data, t_plane *plane, t_color color)
 		return (0);
 	}
 	shape->color = color;
+	shape->material = build_material(color);
 	append_node(data, shape);
 	return (1);
 }

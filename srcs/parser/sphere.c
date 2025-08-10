@@ -21,7 +21,7 @@ static int	create_sphere(t_data *data, t_sphere *sphere, t_color color)
 	if (!new_sphere)
 		return (0);
 	new_sphere->center = sphere->center;
-	new_sphere->radius = sphere->radius;
+	new_sphere->radius = sphere->radius / 2.0f;
 	shape = create_node(SPHERE, new_sphere, data);
 	if (!shape)
 	{
@@ -29,6 +29,7 @@ static int	create_sphere(t_data *data, t_sphere *sphere, t_color color)
 		return (0);
 	}
 	shape->color = color;
+	shape->material = build_material(color);
 	append_node(data, shape);
 	return (1);
 }

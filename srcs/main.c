@@ -9,7 +9,6 @@
 /*   Updated: 2025/07/29 18:17:59 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "miniRT.h"
 
 int	correct_extension(char *str)
@@ -27,7 +26,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		exit_message("Invalid number of arguments");
 	if (!correct_extension(argv[1]))
-		exit_message("Invalid file extension");
+		exit_message("Invalid extension of file");
 	init_minirt(argv[1]);
 	return (0);
 }

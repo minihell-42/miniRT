@@ -6,10 +6,10 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:44:41 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/07/28 11:44:43 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/10 10:58:02 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 float	vec_len(t_vector v)
@@ -59,10 +59,12 @@ t_vector	vec_negate(t_vector v)
 	return (new);
 }
 
-t_vector	vec_reflect(t_vector v, t_vector n)
+t_vector	vec_perp(t_vector v1, t_vector v2)
 {
-	float	d;
+	t_vector	perp;
+	float		scalar;
 
-	d = vec_dot(v, n);
-	return (vec_sub(v, vec_scalar_mult(n, 2.0f * d)));
+	scalar = vec_dot(v1, v2);
+	perp = vec_sub(v1, vec_scalar_mult(v2, scalar));
+	return (perp);
 }

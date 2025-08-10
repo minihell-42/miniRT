@@ -9,11 +9,11 @@
 /*   Updated: 2025/07/28 11:43:55 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "miniRT.h"
 #include "render.h"
 
 // denorm -> denominador
-int	plane_intersection(t_inter *hit, const t_plane *pl)
+int	plane_intersection(t_inter *hit, t_plane *pl)
 {
 	float		denom;
 	float		dist_val;
@@ -30,7 +30,7 @@ int	plane_intersection(t_inter *hit, const t_plane *pl)
 	return (1);
 }
 
-t_vector	plane_normal(const t_plane *pl, t_vector hit_point)
+t_vector	plane_normal(t_plane *pl, t_vector hit_point)
 {
 	(void)hit_point;
 	return (pl->normal);
