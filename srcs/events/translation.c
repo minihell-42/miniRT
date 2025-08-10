@@ -4,7 +4,7 @@ void	translate_camera(int key, t_data *data)
 {
 	float move_amount;
 
-	move_amount = 0.1;
+	move_amount = 2.0;
 	if (key == XK_a)
 		data->camera->coordinates.x -= move_amount;
 	if (key == XK_d)
@@ -88,7 +88,7 @@ void	translate_object(int key, t_data *data)
 	float	move_amount;
 
 	current = data->shapes;
-	move_amount = 0.5;
+	move_amount = 1.0;
 	while (current)
 	{
 		if (current->shape_type == SPHERE)

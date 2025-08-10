@@ -1,4 +1,5 @@
 #include "miniRT.h"
+#include "render.h"
 
 int	on_close(t_data *data)
 {
@@ -22,6 +23,7 @@ int	on_key_press(int key, t_data *data)
 		rotate_object(key, data);
 	if (key == XK_1 || key == XK_2)
 		resize_object(key, data);
+	render(data);
 	return (0);
 }
 
@@ -40,6 +42,7 @@ int	on_mouse_scroll(int button, int x, int y, t_data *data)
 		data->camera->fov += 10;
 		data->camera->fov /= M_PI / 180.0f;
 	}
+	render(data);
 	return (0);
 }
 
