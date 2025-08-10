@@ -24,7 +24,7 @@ float		vec_dot(t_vector v1, t_vector v2);
 t_vector	vec_cross(t_vector v1, t_vector v2);
 t_vector	vec_normalize(t_vector v);
 t_vector	vec_negate(t_vector v);
-t_vector	vec_reflect(t_vector v1, t_vector v2);
+t_vector	vec_perp(t_vector v1, t_vector v2);
 
 // VECTOR MATH
 t_vector	vec_add(t_vector v1, t_vector v2);

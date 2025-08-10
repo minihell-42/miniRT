@@ -58,7 +58,7 @@ void	calc_specular(t_inter *hit, t_light *light, t_vector view_dir)
 	float		phong_factor;
 
 	light_dir = vec_normalize(vec_sub(light->coordinates, hit->pos));
-	reflection_dir = vec_reflect(vec_negate(light_dir), hit->normal);
+	reflection_dir = vec_perp(vec_negate(light_dir), hit->normal);
 	reflection_dot_view = fmaxf(vec_dot(reflection_dir, view_dir), 0.0f);
 	phong_factor = powf(reflection_dot_view, hit->shape->material.shininess)
 		* light->ratio;

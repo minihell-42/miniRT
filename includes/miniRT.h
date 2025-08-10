@@ -53,7 +53,7 @@ typedef struct s_vector
 	float				z;
 }						t_vector;
 
-// Color structx
+// Color struct
 typedef struct s_color
 {
 	int					r;
