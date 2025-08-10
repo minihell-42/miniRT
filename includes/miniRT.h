@@ -187,8 +187,8 @@ typedef struct s_inter
 	t_ray				ray;
 	t_shape				*shape;
 	t_color				color;
-	t_vector		normal;
-	t_vector		pos;
+	t_vector			normal;
+	t_vector			pos;
 }						t_inter;
 
 typedef struct s_data
