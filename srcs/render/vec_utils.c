@@ -6,7 +6,7 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:44:41 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/07/28 11:44:43 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/10 10:38:52 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "miniRT.h"
@@ -59,9 +59,9 @@ t_vector	vec_negate(t_vector v)
 	return (new);
 }
 
-t_vector vec_reflect(t_vector v1, t_vector v2)
+t_vector	vec_reflect(t_vector v1, t_vector v2)
 {
-	t_vector perp;
+	t_vector	perp;
 	float		scalar;
 
 	scalar = vec_dot(v1, v2);

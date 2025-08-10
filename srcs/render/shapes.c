@@ -30,6 +30,8 @@ int	shape_intersect(t_inter *hit, t_shape *shape)
 	{
 		hit->shape = shape;
 		hit->color = shape->color;
+		hit->pos = inter_pos(hit);
+		hit->normal = shape_normal(hit->shape, hit->pos);
 		return (1);
 	}
 	return (0);

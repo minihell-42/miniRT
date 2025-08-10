@@ -6,7 +6,7 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:11:42 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/08/03 19:09:24 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/10 10:40:03 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,9 @@ t_ray	make_shadow_ray(t_vector pos, t_vector normal, t_light *light)
 int	is_in_shadow(t_inter *hit, t_data *data)
 {
 	t_ray		shadow_ray;
-	t_vector	pos;
-	t_vector	normal;
 	t_inter		blocker;
 
-	pos = inter_pos(hit);
-	normal = shape_normal(hit->shape, pos);
-	shadow_ray = make_shadow_ray(pos, normal, data->light);
+	shadow_ray = make_shadow_ray(hit->pos, hit->normal, data->light);
 	blocker = cast_ray(&shadow_ray, data->shapes);
 	if (blocker.shape && blocker.shape != hit->shape
 		&& blocker.dist < shadow_ray.dist_max)
@@ -58,14 +54,11 @@ void	calc_specular(t_inter *hit, t_light *light, t_vector view_dir)
 {
 	t_vector	light_dir;
 	t_vector	reflection_dir;
-	t_vector	pos;
 	float		reflection_dot_view;
 	float		phong_factor;
 
-	pos = inter_pos(hit);
-	light_dir = vec_normalize(vec_sub(light->coordinates, pos));
-	reflection_dir = vec_reflect(vec_negate(light_dir),
-			shape_normal(hit->shape, pos));
+	light_dir = vec_normalize(vec_sub(light->coordinates, hit->pos));
+	reflection_dir = vec_reflect(vec_negate(light_dir), hit->normal);
 	reflection_dot_view = fmaxf(vec_dot(reflection_dir, view_dir), 0.0f);
 	phong_factor = powf(reflection_dot_view, hit->shape->material.shininess)
 		* light->ratio;

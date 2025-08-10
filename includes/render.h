@@ -18,13 +18,13 @@
 void		render(t_data *data);
 
 // VECTOR UTILS
-int     vector_to_int(t_vector col);
+int			vector_to_int(t_vector col);
 float		vec_len(t_vector v);
 float		vec_dot(t_vector v1, t_vector v2);
 t_vector	vec_cross(t_vector v1, t_vector v2);
 t_vector	vec_normalize(t_vector v);
 t_vector	vec_negate(t_vector v);
-t_vector  vec_reflect(t_vector v1, t_vector v2);
+t_vector	vec_reflect(t_vector v1, t_vector v2);
 
 // VECTOR MATH
 t_vector	vec_add(t_vector v1, t_vector v2);
@@ -71,7 +71,8 @@ void		define_viewpt(t_viewpt *vp, float fov);
 void		normalize_coord(t_viewpt *vp, float x, float y);
 
 // LIGHT
-void    calc_specular(t_inter *hit, t_light *light, t_vector view_dir);
+void		calc_specular(t_inter *hit, t_light *light, t_vector view_dir);
+int			is_in_shadow(t_inter *hit, t_data *data);
 t_vector	convert_col_vec(t_color col);
 t_vector	calc_diffuse(t_inter *hit, t_light *light);
 t_vector	calculate_lighting(t_inter *hit, t_data *data);

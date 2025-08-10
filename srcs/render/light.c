@@ -6,7 +6,7 @@
 /*   By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:11:19 by dgomez-a          #+#    #+#             */
-/*   Updated: 2025/08/03 18:49:20 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/08/10 10:39:33 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,23 @@ t_vector	convert_col_vec(t_color color)
 
 t_vector	calc_diffuse(t_inter *hit, t_light *light)
 {
-	t_vector	pos;
-	t_vector	normal;
-	t_vector	light_dir;
-	t_vector	obj_col;
-	t_vector	kd;
-	float		NdotL;
+	t_vector	light_direction;
+	t_vector	object_color;
+	t_vector	material_diffuse;
+	t_vector	diffuse_result;
+	float		normal_dot_light;
 
-	pos = inter_pos(hit);
-	normal = shape_normal(hit->shape, pos);
-	light_dir = vec_normalize(vec_sub(light->coordinates, pos));
-	NdotL = fmaxf(vec_dot(normal, light_dir), 0.0f);
-	// object base color as float
-	obj_col = convert_col_vec(hit->shape->color);
-	// material diffuse rgb (each in [0..1])
-	kd = hit->shape->material.diffuse;
-	// final diffuse per channel
-	return ((t_vector){obj_col.x * kd.x * light->ratio * NdotL, obj_col.y * kd.y
-		* light->ratio * NdotL, obj_col.z * kd.z * light->ratio * NdotL});
+	light_direction = vec_normalize(vec_sub(light->coordinates, hit->pos));
+	normal_dot_light = fmaxf(vec_dot(hit->normal, light_direction), 0.0f);
+	object_color = convert_col_vec(hit->shape->color);
+	material_diffuse = hit->shape->material.diffuse;
+	diffuse_result.x = object_color.x * material_diffuse.x * light->ratio
+		* normal_dot_light;
+	diffuse_result.y = object_color.y * material_diffuse.y * light->ratio
+		* normal_dot_light;
+	diffuse_result.z = object_color.z * material_diffuse.z * light->ratio
+		* normal_dot_light;
+	return (diffuse_result);
 }
 
 t_vector	calculate_lighting(t_inter *hit, t_data *data)
