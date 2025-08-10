@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 13:56:42 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/29 18:21:30 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/08/10 10:48:21 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "miniRT.h"
@@ -51,7 +51,7 @@ static void	data_init(t_data *data)
 
 void	init_minirt(char *file)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
@@ -59,8 +59,6 @@ void	init_minirt(char *file)
 	data_init(data);
 	read_file(file, data);
 	render(data);
-	printf("----- AFTER RENDERING --------\n");
-	print_data(data);
 	setup_events(data);
 	mlx_loop(data->app->mlx_connection);
 }

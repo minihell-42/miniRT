@@ -23,10 +23,10 @@ int	correct_extension(char *str)
 
 int	main(int argc, char **argv)
 {
-    if (argc != 2)
-        exit_message("Invalid number of arguments");
-    if (!correct_extension(argv[1]))
-        exit_message("Invalid extension of file");
-    init_minirt(argv[1]);
-    return (0);
+	if (argc != 2)
+		exit_message("Invalid number of arguments");
+	if (!correct_extension(argv[1]))
+		exit_message("Invalid extension of file");
+	init_minirt(argv[1]);
+	return (0);
 }

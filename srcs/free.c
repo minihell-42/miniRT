@@ -33,7 +33,7 @@ void	free_app(t_data *data)
 	{
 		if (data->app->image->img_ptr)
 			mlx_destroy_image(data->app->mlx_connection,
-								data->app->image->img_ptr);
+				data->app->image->img_ptr);
 		free(data->app->image);
 	}
 	if (data->app->mlx_window)

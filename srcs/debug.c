@@ -1,4 +1,4 @@
-
+/*
 #include "miniRT.h"
 #include <stdio.h>
 
@@ -127,4 +127,4 @@ void	print_data(t_data *data)
 	// Shapes list
 	printf("Parsed shapes (count = %d):\n", data->shape_count);
 	print_shapes(data->shapes);
-}
+}*/
