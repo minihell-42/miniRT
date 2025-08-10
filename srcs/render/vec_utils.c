@@ -58,13 +58,3 @@ t_vector	vec_negate(t_vector v)
 	new.z = -v.z;
 	return (new);
 }
-
-t_vector	vec_perp(t_vector v1, t_vector v2)
-{
-	t_vector	perp;
-	float		scalar;
-
-	scalar = vec_dot(v1, v2);
-	perp = vec_sub(v1, vec_scalar_mult(v2, scalar));
-	return (perp);
-}

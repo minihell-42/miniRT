@@ -57,13 +57,20 @@ t_vector	sphere_normal(t_sphere *sp, t_vector hit_point);
 t_vector	plane_normal(t_plane *pl, t_vector hit_point);
 t_vector	cylinder_normal(t_cylinder *cy, t_vector hit_point);
 
+// SHAPE UTILS
+void		update_closest_dist(float dist, t_inter *hit);
+int			cylinder_side_quadratic(t_ray *ray, t_cylinder *cy,
+				t_quadratic *quad, t_vector *oc_perp);
+
 // COLOR
+int			vector_to_int(t_vector col);
 int			shade_pixel(t_inter *hit, t_data *data);
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_mult(t_color c1, t_color c2);
 t_color		color_scalar_mult(t_color c, float scalar);
 t_vector	apply_gamma_correction(t_vector c);
 t_vector	vec_clamp(t_vector v, float min, float max);
+t_vector	vec_perp(t_vector v1, t_vector v2);
 
 // CAMERA
 void		build_orth_basis(t_camera *cam);
