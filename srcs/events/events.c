@@ -24,7 +24,7 @@ int	on_key_press(int key, t_data *data)
 	if (key == XK_Escape)
 		return (on_close(data));
 	if (key == XK_Left || key == XK_Right || key == XK_Up || key == XK_Down
-		|| key == 45 || key == 43)
+		|| key == XK_plus || key == XK_minus)
 		translate_object(key, data);
 	if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
 		translate_camera(key, data);
