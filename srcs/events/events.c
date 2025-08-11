@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 13:16:00 by samcasti          #+#    #+#             */
-/*   Updated: 2025/08/11 13:16:03 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:03:06 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,6 @@ int	on_key_press(int key, t_data *data)
 		rotate_object(key, data);
 	if (key == XK_1 || key == XK_2)
 		resize_object(key, data);
-	render(data);
-	return (0);
-}
-
-// TODO: check why fov value only increases
-int	on_mouse_scroll(int button, int x, int y, t_data *data)
-{
-	(void)x;
-	(void)y;
-	if (button == Button4)
-	{
-		data->camera->fov -= 10;
-		data->camera->fov /= M_PI / 180.0f;
-	}
-	else if (button == Button5)
-	{
-		data->camera->fov += 10;
-		data->camera->fov /= M_PI / 180.0f;
-	}
 	render(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 13:11:49 by samcasti          #+#    #+#             */
-/*   Updated: 2025/08/11 13:12:35 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:10:57 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	translate_light(int key, t_data *data)
 {
 	float	move_amount;
 
-	move_amount = 1.0;
+	move_amount = 2.0;
 	if (key == XK_t)
 		data->light->coordinates.y += move_amount;
 	if (key == XK_f)

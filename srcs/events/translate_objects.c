@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   translate_objects.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 13:15:37 by samcasti          #+#    #+#             */
-/*   Updated: 2025/08/11 13:15:38 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:45:12 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	translate_sphere(int key, t_sphere *sphere, float move_amount)
 		sphere->center.y += move_amount;
 	else if (key == XK_Down)
 		sphere->center.y -= move_amount;
-	else if (key == 43)
+	else if (key == XK_plus)
 		sphere->center.z += move_amount;
-	else if (key == 45)
+	else if (key == XK_minus)
 		sphere->center.z -= move_amount;
 }
 
@@ -38,9 +38,9 @@ static void	translate_plane(int key, t_plane *plane, float move_amount)
 		plane->point.y += move_amount;
 	else if (key == XK_Down)
 		plane->point.y -= move_amount;
-	else if (key == 43)
+	else if (key == XK_plus)
 		plane->point.z += move_amount;
-	else if (key == 45)
+	else if (key == XK_minus)
 		plane->point.z -= move_amount;
 }
 
@@ -54,9 +54,9 @@ static void	translate_cylinder(int key, t_cylinder *cylinder, float move_amount)
 		cylinder->center.y += move_amount;
 	else if (key == XK_Down)
 		cylinder->center.y -= move_amount;
-	else if (key == 43)
+	else if (key == XK_plus)
 		cylinder->center.z += move_amount;
-	else if (key == 45)
+	else if (key == XK_minus)
 		cylinder->center.z -= move_amount;
 }
 

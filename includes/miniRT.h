@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:11 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/29 18:42:22 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:03:14 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,6 @@ void					free_data(t_data *data);
 void					setup_events(t_data *data);
 int						on_close(t_data *data);
 int						on_key_press(int key, t_data *data);
-int						on_mouse_scroll(int button, int x, int y, t_data *data);
 int						on_mouse_exit(t_data *data);
 void					translate_camera(int key, t_data *data);
 void					translate_light(int key, t_data *data);
