@@ -13,16 +13,6 @@
 #include "miniRT.h"
 #include "render.h"
 
-int	vector_to_int(t_vector col)
-{
-	t_color	new;
-
-	new.r = (int)fminf(fmaxf(col.x, 0.0f), 255.0f);
-	new.g = (int)fminf(fmaxf(col.y, 0.0f), 255.0f);
-	new.b = (int)fminf(fmaxf(col.z, 0.0f), 255.0f);
-	return (new.r << 16 | new.g << 8 | new.b);
-}
-
 t_ray	make_shadow_ray(t_vector pos, t_vector normal, t_light *light)
 {
 	t_vector	to_light;
