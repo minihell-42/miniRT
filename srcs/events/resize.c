@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   resize.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/11 13:22:00 by samcasti          #+#    #+#             */
+/*   Updated: 2025/08/11 13:22:01 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 static void	resize_cylinder(int key, t_cylinder *cylinder, float size)
@@ -26,8 +38,8 @@ static void	resize_sphere(int key, t_sphere *sphere, float size)
 
 void	resize_object(int key, t_data *data)
 {
-	t_shape *current;
-	float size;
+	t_shape		*current;
+	float		size;
 
 	current = data->shapes;
 	size = 1;

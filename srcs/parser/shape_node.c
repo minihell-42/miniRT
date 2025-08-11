@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shape_node.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/11 13:22:43 by samcasti          #+#    #+#             */
+/*   Updated: 2025/08/11 13:22:45 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 t_shape	*create_node(t_type type, void *shape, t_data *data)
@@ -16,7 +28,7 @@ t_shape	*create_node(t_type type, void *shape, t_data *data)
 
 void	append_node(t_data *data, t_shape *new_shape)
 {
-	t_shape *current;
+	t_shape	*current;
 
 	if (!data->shapes)
 		data->shapes = new_shape;
