@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:05:11 by samcasti          #+#    #+#             */
-/*   Updated: 2025/08/11 14:03:14 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:59:54 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 
 // α exponent for Blinn–Phong
 # define SHININESS 50.0f
+
+# define PLUS_KEY 61
 
 // Helps avoid rebouncing on the same spot when generating the shadow
 # define SHADOW_BIAS 1e-3f

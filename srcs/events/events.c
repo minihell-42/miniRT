@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 13:16:00 by samcasti          #+#    #+#             */
-/*   Updated: 2025/08/11 14:03:06 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:06:45 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	on_key_press(int key, t_data *data)
 	if (key == XK_Escape)
 		return (on_close(data));
 	if (key == XK_Left || key == XK_Right || key == XK_Up || key == XK_Down
-		|| key == XK_plus || key == XK_minus)
+		|| key == PLUS_KEY || key == XK_minus)
 		translate_object(key, data);
 	if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
 		translate_camera(key, data);
