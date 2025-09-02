@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 14:00:25 by samcasti          #+#    #+#             */
-/*   Updated: 2025/07/29 18:03:01 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:36:11 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	process_file(int fd, t_data *data)
 	char	*line;
 
 	line = get_next_line(fd);
+	if (!line)
+		exit_free_data("Empty file", data);
 	while (line)
 	{
 		parse_line(line, data);
