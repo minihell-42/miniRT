@@ -25,6 +25,8 @@ void	parse_camera(char *line, t_data *data)
 		exit_free_data("Memory allocation failed", data);
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3])
 		exit_free_all("Invalid camera format", data, tokens);
+	if (!validate_identifier(tokens[0], "C"))
+		exit_free_all("Invalid camera identifier", data, tokens);
 	if (!validate_coordinates(tokens[1], &camera.coordinates))
 		exit_free_all("Invalid coordinates format for camera", data, tokens);
 	if (!validate_coordinates(tokens[2], &camera.normalized))

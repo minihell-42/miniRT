@@ -45,6 +45,8 @@ void	parse_plane(char *line, t_data *data)
 		exit_free_data("Memory allocation failed", data);
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3])
 		exit_free_all("Invalid plane line format", data, tokens);
+	if (!validate_identifier(tokens[0], "pl"))
+		exit_free_all("Invalid plane identifier", data, tokens);
 	if (!validate_coordinates(tokens[1], &plane.point))
 		exit_free_all("Invalid coordinates for plane", data, tokens);
 	if (!validate_coordinates(tokens[2], &plane.normal))

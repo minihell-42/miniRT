@@ -45,6 +45,8 @@ void	parse_sphere(char *line, t_data *data)
 		exit_free_data("Memory allocation failed", data);
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3])
 		exit_free_all("Invalid sphere line format", data, tokens);
+	if (!validate_identifier(tokens[0], "sp"))
+		exit_free_all("Invalid sphere identifier", data, tokens);
 	if (!validate_coordinates(tokens[1], &sphere.center))
 		exit_free_all("Invalid coordinates format for sphere", data, tokens);
 	if (!validate_positive_float(tokens[2], &sphere.radius))

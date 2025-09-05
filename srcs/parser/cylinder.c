@@ -48,6 +48,8 @@ void	parse_cylinder(char *line, t_data *data)
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3] || !tokens[4]
 		|| !tokens[5])
 		exit_free_all("Invalid cylinder line format", data, tokens);
+	if (!validate_identifier(tokens[0], "cy"))
+		exit_free_all("Invalid cylinder identifier", data, tokens);
 	if (!validate_coordinates(tokens[1], &cylinder.center))
 		exit_free_all("Invalid coordinates format for cylinder", data, tokens);
 	if (!validate_coordinates(tokens[2], &cylinder.normal))

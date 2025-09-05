@@ -25,6 +25,8 @@ void	parse_light(char *line, t_data *data)
 		exit_free_data("Memory allocation failed", data);
 	if (!tokens[0] || !tokens[1] || !tokens[2])
 		exit_free_all("Invalid light line format", data, tokens);
+	if (!validate_identifier(tokens[0], "L"))
+		exit_free_all("Invalid light identifier", data, tokens);
 	if (!validate_coordinates(tokens[1], &coordinates))
 		exit_free_all("Invalid coordinates format for light", data, tokens);
 	if (!validate_ratio(tokens[2], &ratio))

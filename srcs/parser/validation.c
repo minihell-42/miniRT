@@ -69,7 +69,7 @@ int	validate_fov(char *str, float *fov)
 	if (!str || !fov)
 		return (0);
 	*fov = ft_atof(str);
-	return (*fov > 0.0 && *fov < 180.0);
+	return (*fov > 0.0 && *fov <= 180.0);
 }
 
 int	validate_positive_float(char *str, float *value)
@@ -78,4 +78,11 @@ int	validate_positive_float(char *str, float *value)
 		return (0);
 	*value = ft_atof(str);
 	return (*value > 0.0);
+}
+
+int	validate_identifier(char *identifier, const char *expected)
+{
+	if (!identifier || !expected)
+		return (0);
+	return (ft_strcmp(identifier, (char *)expected) == 0);
 }

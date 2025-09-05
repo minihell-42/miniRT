@@ -226,6 +226,7 @@ int						validate_color(char *str, t_color *color);
 int						validate_ratio(char *str, float *ratio);
 int						validate_fov(char *str, float *fov);
 int						validate_positive_float(char *str, float *value);
+int						validate_identifier(char *identifier, const char *expected);
 
 // SHAPE CREATION
 t_shape					*create_node(t_type type, void *shape, t_data *data);
