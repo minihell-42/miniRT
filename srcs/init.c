@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 13:56:42 by samcasti          #+#    #+#             */
-/*   Updated: 2025/08/10 10:48:21 by dgomez-a         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:09:10 by dgomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "miniRT.h"
@@ -59,6 +59,7 @@ void	init_minirt(char *file)
 	data_init(data);
 	read_file(file, data);
 	render(data);
+	write(1, "Rendering finalized\n", 21);
 	setup_events(data);
 	mlx_loop(data->app->mlx_connection);
 }
